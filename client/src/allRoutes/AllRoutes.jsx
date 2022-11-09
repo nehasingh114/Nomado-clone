@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Hotels } from "./Hotels"
+import { Hotels } from "../Pages/Hotels"
 
 export const AllRoutes=()=>{
     return (
