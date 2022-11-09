@@ -13,6 +13,10 @@ app.use(express.json());
 
 app.use('/api/users', userRouter);
 
+app.get('/', async (req, res) => {
+    res.sendFile(__dirname + '/utils/index.html');
+})
+
 connectDB().then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on PORT ${PORT}`)
