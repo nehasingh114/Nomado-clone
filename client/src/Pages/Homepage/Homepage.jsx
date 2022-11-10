@@ -1,10 +1,12 @@
 import React from 'react'
 import style from "./homepage.module.css"
 import {Box,Image,VStack} from "@chakra-ui/react"
+import SearchBar from '../searchBar/SearchBar'
 
 const Homepage = () => {
   return (
     <div>
+      <SearchBar/>
       <Box className={style.mainbox}>
 <div>
   <Image className={style.image} src="https://forever.travel-assets.com/flex/flexmanager/images/2022/02/09/ORB_BrandPromise_TravelAsYouAre_imgB_840x473_20220207.jpg?impolicy=fcrop&w=600&h=257&q=medium" alt="heart"/>
@@ -105,52 +107,7 @@ const Homepage = () => {
           alt=""
         />
       </div>
-     
-
-{/* <div className={style.featured}>
-      <h1>Featured offers</h1>
-      <div className={style.featuredDiv}>
-        <div className={style.div}>
-          <div className={style.div1}>
-            <h2>Last-minute deals</h2>
-            <p>Getaway today</p>
-          </div>
-        </div>
-        <div  className={style.div}>
-          <div className={style.div2}>
-            <h2>All-inclusive resort</h2> */}
-            {/* <p>Enjoy sun and fun</p>
-          </div>
-        </div>
-        <div className={style.div}>
-          <div className={style.div3}>
-            <h2>Insider Prices</h2>
-            <p>Members get rewarded</p>
-          </div>
-        </div>
-        <div className={style.div}>
-          <div className={style.div4}>
-            <h2>Jet and reset</h2>
-            <p>Fly somewhere beacgy and warm</p>
-          </div>
-        </div>
-      </div>
-
-    </div> */}
-
-
-
-
-
-
-
-
-
-    
 </Box>
-
-
-
     </div>
   )
 }
