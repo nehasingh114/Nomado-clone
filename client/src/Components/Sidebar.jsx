@@ -5,7 +5,7 @@ export const Sidebar=()=>{
         <>
         
             
-                <Box border="1px solid red" bg="rgb(245,245,245)" padding="10px">
+                <Box bg="rgb(245,245,245)" padding="10px" paddingLeft='20px'>
                     <Text textAlign="left" fontSize="2xl" fontWeight="bold">Filter by</Text>
                     <Text textAlign="left" fontSize="xl">Popular filters</Text>
                     
