@@ -1,0 +1,10 @@
+export const SINGLE_HOTEL_LOADING = 'singlehotel/loading';
+export const SINGLE_HOTEL_SUCCESS = 'singlehotel/success';
+export const SINGLE_HOTEL_ERROR = 'singlehotel/error';
+export const SINGLE_HOTEL_PHOTOS = 'singlehotel/photos/success';
+export const CREATE_ROOM = 'create/room';
+export const REMOVE_ROOM = 'remove/room';
+export const ADD_ADULT = 'add/adult';
+export const ADD_CHILDREN = 'add/children';
+export const SUB_ADULT = 'sub/adult';
+export const SUB_CHILDREN = 'sub/children';
