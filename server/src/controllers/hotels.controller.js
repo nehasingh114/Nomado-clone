@@ -12,4 +12,15 @@ const getHotels = async (req, res) => {
     }
 }
 
-module.exports = { getHotels }
+const getSingleHotel = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const hotel = await Hotel.findById(id);
+        res.send(hotel);
+    }
+    catch (e) {
+        res.send({ message: "Error", error: e })
+    }
+}
+
+module.exports = { getHotels, getSingleHotel }
