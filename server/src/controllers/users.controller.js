@@ -28,6 +28,9 @@ const loginUser = async (req, res) => {
     try {
         const { email, password, keepSigned } = req.body;
         const user = await User.findOne({ email, password });
+        if (!user) {
+            return res.status(404).send({ message: "Invalid credentials.", error: e })
+        }
         if (!keepSigned) {
             const token = jwt.sign({ email }, tokenSecretKey, { expiresIn: tokenExpiresIn })
             return res.send({ message: "Login success.", user, token })
@@ -38,7 +41,7 @@ const loginUser = async (req, res) => {
         }
     }
     catch (e) {
-        return res.send({ message: "Invalid credentials.", error: e })
+        return res.status(404).send({ message: "Invalid credentials.", error: e })
     }
 }
 

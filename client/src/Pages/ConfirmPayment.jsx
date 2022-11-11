@@ -7,6 +7,7 @@ export const ConfirmPayment = () => {
             <Heading fontSize={'24px'} textAlign='center'>
                 We're confirming your booking...
             </Heading>
+            
         </Box>
     )
 }
