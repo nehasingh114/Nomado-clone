@@ -7,13 +7,17 @@ const tokenSecretKey = process.env.ADMIN_TOKEN;
 
 const adminLogin = async (req, res) => {
     const { email, password } = req.body;
+    console.log(email,password)
     try {
         const admin = await User.findOne({ email, password });
         if (admin.role !== 'admin') {
             return res.status(401).send({ message: 'Unauthenticated' })
         }
+        console.log(1)
         const token = jwt.sign({ email, role: admin.role }, tokenSecretKey);
+        console.log(2)
         admin.delete('password')
+        console.log(3,admin);
         return res.send({ message: "Login success.", admin, token })
     }
     catch (e) {
