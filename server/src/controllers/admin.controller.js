@@ -7,7 +7,7 @@ const tokenSecretKey = process.env.ADMIN_TOKEN;
 
 const adminLogin = async (req, res) => {
     const { email, password } = req.body;
-    console.log(email,password)
+    // console.log(email,password)
     try {
         const admin = await User.findOne({ email, password,role:"admin" });
         const token = jwt.sign({ email, role: admin.role }, tokenSecretKey);
