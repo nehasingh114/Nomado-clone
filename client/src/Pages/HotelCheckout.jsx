@@ -1,8 +1,8 @@
 import { Box, Heading, Flex, Icon, Text } from "@chakra-ui/react"
 import { TiTick } from "react-icons/ti";
 import { useSelector } from "react-redux"
-import { CheckoutMainSection } from "../components/HotelCheckout/CheckoutMainSection";
-import { CheckoutSidebar } from "../components/HotelCheckout/CheckoutSidebar";
+import { CheckoutMainSection } from "../Components/HotelCheckout/CheckoutMainSection";
+import { CheckoutSidebar } from "../Components/HotelCheckout/CheckoutSidebar";
 import { Logo } from '../Components/Logo';
 
 export const HotelCheckout = () => {

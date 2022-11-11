@@ -9,6 +9,7 @@ const hotelRouter = require('./routes/hotels.router.js');
 const searchRouter = require('./routes/search.router.js');
 const hotelPhotosRouter = require('./routes/hotelPhotos.router.js');
 const bookHotelRouter = require('./routes/bookedHotels.router.js');
+const adminRouter = require('./routes/admin.router.js')
 
 const app = express();
 
@@ -23,7 +24,9 @@ app.use('/api/search', searchRouter);
 
 app.use('/api/hotelphotos', hotelPhotosRouter);
 
-app.use('/api/bookhotel', bookHotelRouter)
+app.use('/api/bookhotel', bookHotelRouter);
+
+app.use('/api/admin', adminRouter);
 
 app.get('/', async (req, res) => {
     res.sendFile(__dirname + '/utils/index.html');

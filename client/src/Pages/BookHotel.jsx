@@ -7,10 +7,10 @@ import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { CgArrowLongLeft } from 'react-icons/cg';
-import { Overview } from '../components/Bookhotel/Overview';
-import { Rooms } from '../components/Bookhotel/Rooms';
-import { Location } from '../components/Bookhotel/Location';
-import { Amenities } from '../components/Bookhotel/Amenities';
+import { Overview } from '../Components/Bookhotel/Overview';
+import { Rooms } from '../Components/Bookhotel/Rooms';
+import { Location } from '../Components/Bookhotel/Location';
+import { Amenities } from '../Components/Bookhotel/Amenities';
 
 export const BookHotel = () => {
     const dispatch = useDispatch();

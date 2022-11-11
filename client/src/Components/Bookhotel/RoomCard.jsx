@@ -57,8 +57,8 @@ export const RoomCard = ({ data, i }) => {
         navigate('/checkout/bookhotel')
     }
     useEffect(() => {
-        setPrice(((Number(hotelData['uitk-text 8'].substring(1)) + Number(value)) * rooms.length))
-    }, [value])
+        hotelData['uitk-text 8']?setPrice(((Number(hotelData['uitk-text 8'].substring(1)) + Number(value)) * rooms.length)):null
+    }, [value,hotelData])
     return (
         <Box border='1px solid rgba(0,0,0,0.4)' bg='white' h='100%'>
             <Flex

@@ -4,7 +4,7 @@ import { AiFillCreditCard, AiFillLock } from "react-icons/ai"
 import { BsFillPersonFill } from "react-icons/bs"
 import { TiTick } from "react-icons/ti"
 import { useSelector } from "react-redux"
-// import { PaymentModal } from "./PaymentModal"
+import { PaymentModal } from "./PaymentModal"
 
 export const CheckoutMainSection = () => {
     const { rooms } = useSelector(store => store.singleHotel);
@@ -54,6 +54,15 @@ export const CheckoutMainSection = () => {
         if (zip.length !== 6) {
             toast({
                 title: 'Enter valid ZIP code.',
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
+            return;
+        }
+        if (number.length < 6) {
+            toast({
+                title: 'Enter valid mobile number.',
                 status: 'error',
                 duration: 3000,
                 isClosable: true,
@@ -192,8 +201,8 @@ export const CheckoutMainSection = () => {
                 <Text fontSize='13px' color='GrayText' mt='4px'>
                     This payment will be processed in the U.S. This does not apply when the travel provider (airline/hotel/rail, etc.) processes your payment.
                 </Text>
-            </Box> 
-            {/* <PaymentModal payModal={payModal} /> */}
+            </Box>
+            <PaymentModal payModal={payModal} user={user} />
         </Box>
     )
 }
