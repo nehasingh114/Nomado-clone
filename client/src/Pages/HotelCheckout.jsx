@@ -32,6 +32,7 @@ export const HotelCheckout = () => {
             <Text fontSize='20px' fontWeight={600} mt='10px' textAlign='center' px='20px' color='teal' fontFamily='cursive'>
                 Nomado Travellers
             </Text>
+            
         </Box>
     )
 }
