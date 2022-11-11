@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Text,Tabs, TabList,Image,Button, TabPanels, Tab, TabPanel,Input, Box } from '@chakra-ui/react'
 import style from "./stays.module.css"
+import Navbar from '../../Components/Navbar/Navbar'
+import { Footer } from '../../Components/Footer/Footer'
 
 const hotels=[
     {
@@ -257,6 +259,8 @@ setCheck(!check)
     }
   return (
     <div>
+      <Navbar/>
+      <br />
    <h1 className={style.heading} >Search Hotels</h1>
 <Tabs className={style.tabbox}>
   
@@ -403,15 +407,8 @@ className={style.mydate}
         />
       </div>
 </div>
-
-
-
-
-
-
-
-
-
+<br />
+<Footer/>
     </div>
   )
 }

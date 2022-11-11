@@ -1,6 +1,8 @@
 import React ,{useState}from 'react'
 import style from './flight.module.css'
 import { Text,Tabs, TabList,Image,Button, TabPanels, Tab, TabPanel,Input } from '@chakra-ui/react'
+import Navbar from '../../Components/Navbar/Navbar'
+import { Footer } from '../../Components/Footer/Footer'
 
 const Flight = () => {
     const [check,setCheck]=useState(false)
@@ -40,6 +42,8 @@ const card=[
 
   return (
     <div>
+      <Navbar/>
+      <br />
         <h1 className={style.heading} >Find and compare flights</h1>
 <Tabs>
   <TabList  className={style.TabList}>
@@ -259,10 +263,8 @@ className={style.mydate}
           alt=""
         />
       </div>
-     
-
-
-
+     <br />
+     <Footer/>
 
 
     </div>
