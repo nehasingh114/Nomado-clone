@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 8080;
 const userRouter = require('./routes/users.router.js');
 const hotelRouter = require('./routes/hotels.router.js');
 const searchRouter = require('./routes/search.router.js');
+const hotelPhotosRouter = require('./routes/hotelPhotos.router.js');
+const bookHotelRouter = require('./routes/bookedHotels.router.js');
 
 const app = express();
 
@@ -18,6 +20,10 @@ app.use('/api/users', userRouter);
 app.use('/api/hotels', hotelRouter);
 
 app.use('/api/search', searchRouter);
+
+app.use('/api/hotelphotos', hotelPhotosRouter);
+
+app.use('/api/bookhotel', bookHotelRouter)
 
 app.get('/', async (req, res) => {
     res.sendFile(__dirname + '/utils/index.html');
