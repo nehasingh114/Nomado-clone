@@ -7,11 +7,14 @@ const tokenSecretKey = process.env.ADMIN_TOKEN;
 
 const adminLogin = async (req, res) => {
     const { email, password } = req.body;
-    // console.log(email,password)
     try {
         const admin = await User.findOne({ email, password,role:"admin" });
+        console.log(admin)
+        console.log(1)
         const token = jwt.sign({ email, role: admin.role }, tokenSecretKey);
-        admin.delete('password')
+        console.log(2)
+        
+        console.log(3,admin);
         return res.send({ message: "Login success.", admin, token })
     }
     catch (e) {
@@ -23,14 +26,11 @@ const getUsers = async(req,res) => {
     const {token} = req.headers;
     try{
         const admin = jwt.verify(token,tokenSecretKey);
-        if(admin.role!=='admin'){
-            return res.status(401).send({ message: 'Unauthenticated' })
-        }
         const users = await User.find({},{password:0});
         return res.send({message:"Success",data:users})
     }
     catch(e){
-        return res.send({message:"Error",e})
+        return res.status(401).send({message:"Error",e})
     }
 }
 module.exports = { adminLogin,getUsers };

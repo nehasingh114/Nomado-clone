@@ -10,8 +10,7 @@ const createUser = async (req, res) => {
     try {
         const { email, firstName, lastName, password, keepSigned } = req.body;
         let user = new User({ email, firstName, lastName, password });
-        user = await user.save()
-        user.delete('password')
+        user = await user.save();
         if (!keepSigned) {
             const token = jwt.sign({ email }, tokenSecretKey, { expiresIn: tokenExpiresIn })
             return res.send({ message: "Signup success.", user, token })
@@ -30,9 +29,8 @@ const loginUser = async (req, res) => {
     try {
         const { email, password, keepSigned } = req.body;
         const user = await User.findOne({ email, password });
-        user.delete('password')
         if (!user) {
-            return res.status(404).send({ message: "Invalid credentials.", error: e })
+            return res.status(404).send({ message: "Invalid credentials." })
         }
         if (!keepSigned) {
             const token = jwt.sign({ email }, tokenSecretKey, { expiresIn: tokenExpiresIn })
