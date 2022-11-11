@@ -9,7 +9,8 @@ const tokenExpiresIn = process.env.TOKEN_EXPIRES_IN;
 const createUser = async (req, res) => {
     try {
         const { email, firstName, lastName, password, keepSigned } = req.body;
-        const user = await User.create({ email, firstName, lastName, password });
+        let user = new User({ email, firstName, lastName, password });
+        user = await user.save()
         user.delete('password')
         if (!keepSigned) {
             const token = jwt.sign({ email }, tokenSecretKey, { expiresIn: tokenExpiresIn })
