@@ -13,7 +13,7 @@ const adminLogin = async (req, res) => {
         console.log(1)
         const token = jwt.sign({ email, role: admin.role }, tokenSecretKey);
         console.log(2)
-        admin.delete('password')
+        
         console.log(3,admin);
         return res.send({ message: "Login success.", admin, token })
     }
