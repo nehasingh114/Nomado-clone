@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
-import { BookHotel } from "../pages/BookHotel"
+import { BookHotel } from "../Pages/BookHotel"
 import { ConfirmPayment } from "../Pages/ConfirmPayment"
+import { Home } from "../Pages/Home"
 import { HotelCheckout } from "../Pages/HotelCheckout"
 import { Hotels } from "../Pages/Hotels"
 import { SignIn } from "../Pages/SignIn"
@@ -9,6 +10,7 @@ import { PrivateRoute } from "./PrivateRoute"
 export const AllRoutes = () => {
     return (
         <Routes>
+            <Route path='/' element={<Home />} />
             <Route path='/signin' element={<SignIn />} />
             <Route path="/hotels" element={<Hotels />} />
             <Route path='/hotels/:id' element={<BookHotel />} />
