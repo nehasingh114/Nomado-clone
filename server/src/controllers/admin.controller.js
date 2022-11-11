@@ -20,4 +20,19 @@ const adminLogin = async (req, res) => {
         return res.status(404).send({ message: 'Unauthenticated' })
     }
 }
-module.exports = { adminLogin };
+
+const getUsers = async(req,res) => {
+    const {token} = req.headers;
+    try{
+        const admin = jwt.verify(token,tokenSecretKey);
+        if(admin.role!=='admin'){
+            return res.status(401).send({ message: 'Unauthenticated' })
+        }
+        const users = await User.find({},{password:0});
+        return res.send({message:"Success",data:users})
+    }
+    catch(e){
+        return res.send({message:"Error",e})
+    }
+}
+module.exports = { adminLogin,getUsers };
