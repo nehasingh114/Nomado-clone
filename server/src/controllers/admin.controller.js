@@ -17,7 +17,7 @@ const adminLogin = async (req, res) => {
         return res.send({ message: "Login success.", admin, token })
     }
     catch (e) {
-        return res.status(404).send({ message: 'Unauthenticated' })
+        return res.status(404).send({ message: 'Unauthenticated',e })
     }
 }
 
