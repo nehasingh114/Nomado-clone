@@ -4,6 +4,7 @@ import { ConfirmPayment } from "../Pages/ConfirmPayment"
 import { HotelCheckout } from "../Pages/HotelCheckout"
 import { Hotels } from "../Pages/Hotels"
 import { SignIn } from "../Pages/SignIn"
+import { PrivateRoute } from "./PrivateRoute"
 
 export const AllRoutes = () => {
     return (
@@ -11,7 +12,10 @@ export const AllRoutes = () => {
             <Route path='/signin' element={<SignIn />} />
             <Route path="/hotels" element={<Hotels />} />
             <Route path='/hotels/:id' element={<BookHotel />} />
-            <Route path='/checkout/bookhotel' element={<HotelCheckout />} />
+            <Route path='/checkout/bookhotel'
+                element={<PrivateRoute>
+                    <HotelCheckout />
+                </PrivateRoute>} />
             <Route path='/confirmpayment/stays' element={<ConfirmPayment />} />
         </Routes>
     )

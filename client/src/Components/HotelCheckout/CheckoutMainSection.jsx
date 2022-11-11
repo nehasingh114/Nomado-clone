@@ -1,13 +1,16 @@
-import { Box, Flex, Icon, Text, FormControl, FormLabel, Input, Checkbox, Divider, Image, UnorderedList, ListItem, Button, useToast } from "@chakra-ui/react"
+import { Box, Flex, Icon, Text, FormControl, FormLabel, Input, Checkbox, Divider, Image, UnorderedList, ListItem, Button, useToast, useDisclosure } from "@chakra-ui/react"
 import { useState } from "react"
 import { AiFillCreditCard, AiFillLock } from "react-icons/ai"
 import { BsFillPersonFill } from "react-icons/bs"
 import { TiTick } from "react-icons/ti"
 import { useSelector } from "react-redux"
+// import { PaymentModal } from "./PaymentModal"
 
 export const CheckoutMainSection = () => {
     const { rooms } = useSelector(store => store.singleHotel);
-    const [user, setUser] = useState({ firstName: "", lastName: "", number: "" });
+    const { data } = useSelector(store => store.auth);
+    const payModal = useDisclosure();
+    const [user, setUser] = useState({ firstName: data.firstName || "", lastName: data.lastName || "", number: "" });
     const [card, setCard] = useState({ name: "", number: "", secret: "", zip: "" });
     const toast = useToast();
     const handleUser = (e) => {
@@ -30,33 +33,34 @@ export const CheckoutMainSection = () => {
             })
             return;
         }
-        if(cardNumber.length!==16){
+        if (cardNumber.length !== 16) {
             toast({
                 title: 'Enter valid card number.',
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
-              })
-              return;
+            })
+            return;
         }
-        if(secret.length!==4){
+        if (secret.length !== 4) {
             toast({
                 title: 'Enter valid 4-digit Security code.',
                 status: 'error',
                 duration: 3000,
                 isClosable: true,
-              })
-              return;
+            })
+            return;
         }
-        if(zip.length!==6){
+        if (zip.length !== 6) {
             toast({
                 title: 'Enter valid ZIP code.',
                 status: 'error',
                 duration: 3000,
                 isClosable: true,
-              })
-              return;
+            })
+            return;
         }
+        payModal.onOpen();
     }
     return (
         <Box flexGrow={1}>
@@ -65,6 +69,9 @@ export const CheckoutMainSection = () => {
                 <Box>
                     <Text fontSize='14px' fontWeight={600}>
                         Signed In as
+                    </Text>
+                    <Text>
+                        {data.email}
                     </Text>
                 </Box>
             </Flex>
@@ -166,15 +173,15 @@ export const CheckoutMainSection = () => {
                     <ListItem>
                         No refunds will be issued for late check-in or early check-out.
                     </ListItem>
-                    <listItem>
+                    <ListItem>
                         Stay extensions require a new reservation.
-                    </listItem>
+                    </ListItem>
                     <ListItem>
                         Front desk staff will greet guests on arrival.
                     </ListItem>
                 </UnorderedList>
                 <Text fontSize='13px' color='GrayText' mt='20px'>
-                    By clicking on the button below, I acknowledge that I have reviewed the Privacy Statement Opens in a new window. and Government Travel Advice Opens in a new window. and have reviewed and accept the Rules & Restrictions Opens in a new window. and Terms of Use Opens in a new window..
+                    By clicking on the button below, I acknowledge that I have reviewed the Privacy Statement and Government Travel Advic and have reviewed and accept the Rules & Restrictions and Terms of Use .
                 </Text>
                 <Button colorScheme={'teal'} mt='20px' p='14px 20px' onClick={handleSubmit}>
                     Complete Booking
@@ -185,7 +192,8 @@ export const CheckoutMainSection = () => {
                 <Text fontSize='13px' color='GrayText' mt='4px'>
                     This payment will be processed in the U.S. This does not apply when the travel provider (airline/hotel/rail, etc.) processes your payment.
                 </Text>
-            </Box>
+            </Box> 
+            {/* <PaymentModal payModal={payModal} /> */}
         </Box>
     )
 }
