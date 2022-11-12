@@ -5,11 +5,14 @@ import { BsFillPersonFill } from "react-icons/bs"
 import { TiTick } from "react-icons/ti"
 import { useSelector } from "react-redux"
 import { PaymentModal } from "./PaymentModal"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export const CheckoutMainSection = () => {
-    const { rooms } = useSelector(store => store.singleHotel);
+    const { data: hotelData, rooms, roomType, refundable, price, checkin, checkout } = useSelector(store => store.singleHotel);
     const { data } = useSelector(store => store.auth);
     const payModal = useDisclosure();
+    const navigate = useNavigate()
     const [user, setUser] = useState({ firstName: data.firstName || "", lastName: data.lastName || "", number: "" });
     const [card, setCard] = useState({ name: "", number: "", secret: "", zip: "" });
     const toast = useToast();
@@ -71,6 +74,18 @@ export const CheckoutMainSection = () => {
         }
         payModal.onOpen();
     }
+
+    const paymentConfirmed = () => {
+        payModal.onClose()
+        const total = price + (roomType.value * rooms.length);
+        const travellerName = user.firstName + ' ' + user.lastName
+        let creds = { user: data._id, hotel: hotelData._id, roomType, checkin, checkout, rooms, refundable, travellerNumber: +user.number, price: total, travellerName };
+        axios.post('https://venomous-plough-7848.vercel.app/api/bookhotel', creds).then((res) => {
+            if (res.data.message === 'Booking success.') {
+                navigate('/confirmpayment/stays', { state: res.data.trip })
+            }
+        })
+    }
     return (
         <Box flexGrow={1}>
             <Flex bg='white' p='20px' w='100%' gap='15px'>
@@ -110,7 +125,7 @@ export const CheckoutMainSection = () => {
                     <FormControl isRequired mt='15px'>
                         <FormLabel fontSize='14px' fontWeight={600} color='GrayText'>Mobile Phone Number</FormLabel>
                         <Input borderColor={'blackAlpha.700'} placeholder='Your Number'
-                            name='number' value={user.number} onChange={handleUser} />
+                            name='number' type='number' value={user.number} onChange={handleUser} />
                     </FormControl>
                     <Checkbox mt='10px' color='blue' fontSize='13px'>
                         Receive text alerts about this trip. Message and data rates may apply.
@@ -202,7 +217,7 @@ export const CheckoutMainSection = () => {
                     This payment will be processed in the U.S. This does not apply when the travel provider (airline/hotel/rail, etc.) processes your payment.
                 </Text>
             </Box>
-            <PaymentModal payModal={payModal} user={user} />
+            <PaymentModal payModal={payModal} user={user} paymentConfirmed={paymentConfirmed} />
         </Box>
     )
 }

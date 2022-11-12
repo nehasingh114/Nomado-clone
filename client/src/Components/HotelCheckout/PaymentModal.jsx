@@ -4,7 +4,7 @@ import {
 } from "@chakra-ui/react"
 import { useSelector } from 'react-redux';
 
-export const PaymentModal = ({ payModal, user }) => {
+export const PaymentModal = ({ payModal, user, paymentConfirmed }) => {
     const { price, rooms, roomType } = useSelector(store => store.singleHotel)
     return (
         <Modal isOpen={payModal.isOpen} onClose={payModal.onClose} m='0'>
@@ -40,8 +40,8 @@ export const PaymentModal = ({ payModal, user }) => {
                     <Flex justifyContent={'flex-end'} mt='20px' gap='15px'>
                         <Button colorScheme='red' fontSize='14px' onClick={payModal.onClose}>
                             CANCEL
-                            </Button>
-                        <Button colorScheme='purple' fontSize='14px'>PAY</Button>
+                        </Button>
+                        <Button colorScheme='purple' fontSize='14px' onClick={paymentConfirmed}>PAY</Button>
                     </Flex>
                 </ModalBody>
             </ModalContent>

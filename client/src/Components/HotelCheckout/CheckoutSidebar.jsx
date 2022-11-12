@@ -1,9 +1,9 @@
 import { Box, Divider, Heading, Image, Text, Flex } from "@chakra-ui/react"
 import { useSelector } from "react-redux"
-
+ 
 export const CheckoutSidebar = () => {
     const { data, rooms, roomType, refundable, price, checkin, checkout } = useSelector(store => store.singleHotel);
-
+ 
     return (
         <Box w={{ base: "100%", md: "35%" }} flexShrink={0}>
             <Box borderRadius={'5px'} bg='white'>
