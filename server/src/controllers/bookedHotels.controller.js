@@ -15,4 +15,15 @@ const bookHotel = async (req, res) => {
     }
 }
 
-module.exports = { bookHotel };
+const getBookedHotels = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const trips = await BookHotel.find({user:id}).populate({path:"hotel"});
+        res.send({ message: "Success.", trips })
+    }
+    catch (e) {
+        res.send({ message: "Failure", e })
+    }
+}
+
+module.exports = { bookHotel, getBookedHotels };

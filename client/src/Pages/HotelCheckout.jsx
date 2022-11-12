@@ -1,4 +1,5 @@
 import { Box, Heading, Flex, Icon, Text } from "@chakra-ui/react"
+import { useEffect } from "react";
 import { TiTick } from "react-icons/ti";
 import { useSelector } from "react-redux"
 import { CheckoutMainSection } from "../Components/HotelCheckout/CheckoutMainSection";
@@ -7,7 +8,11 @@ import { Logo } from '../Components/Logo';
 
 export const HotelCheckout = () => {
     const { roomType, data } = useSelector(store => store.singleHotel);
-    const { data: userData } = useSelector(store => store.auth)
+    const { data: userData } = useSelector(store => store.auth);
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    })
     return (
         <>
             <Flex bg='#0a192f' borderTop='4px solid dodgerblue' px={{ base: "10px", sm: "20px", lg: "50px", xl: "80px" }} py='10px' justifyContent={'space-between'} alignItems='center'>
