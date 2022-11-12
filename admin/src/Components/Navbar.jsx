@@ -1,15 +1,13 @@
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     Drawer,
     DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
   } from '@chakra-ui/react'
-import { Link } from 'react-router-dom';
 
 function Navbar(props) {
 
