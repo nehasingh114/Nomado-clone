@@ -86,7 +86,7 @@ const updateHotel = async (req, res) => {
     const { id } = req.params;
     try {
         const admin = jwt.verify(token, tokenSecretKey);
-        const hotel = await Hotel.findOneAndUpdate({ id }, data, { new: true });
+        const hotel = await Hotel.findOneAndUpdate({ _id:id }, data, { new: true });
         return res.send({ message: "Success", data: hotel })
     }
     catch (e) {
