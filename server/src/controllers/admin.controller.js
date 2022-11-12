@@ -1,7 +1,8 @@
 const User = require('../models/users.model.js');
 const Admin = require('../models/admin.model.js');
 const Token = require('../models/tokens.model.js');
-const Hotel = require('../models/hotels.model.js')
+const Hotel = require('../models/hotels.model.js');
+const Flight = require('../models/flight.model.js')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -17,6 +18,19 @@ const adminLogin = async (req, res) => {
     catch (e) {
         return res.status(404).send({ message: 'Unauthenticated', e })
     }
+}
+
+const getAdminData = async (req, res) => {
+    const { token } = req.headers;
+    try {
+        const data = jwt.verify(token, tokenSecretKey);
+        const admin = await Admin.findOne({ email: data.email });
+        return res.send({ message: "Success", data: admin })
+    }
+    catch (e) {
+        return res.status(401).send({ message: "Error", e })
+    }
+
 }
 
 const getUsers = async (req, res) => {
@@ -86,7 +100,7 @@ const updateHotel = async (req, res) => {
     const { id } = req.params;
     try {
         const admin = jwt.verify(token, tokenSecretKey);
-        const hotel = await Hotel.findOneAndUpdate({ _id:id }, data, { new: true });
+        const hotel = await Hotel.findOneAndUpdate({ _id: id }, data, { new: true });
         return res.send({ message: "Success", data: hotel })
     }
     catch (e) {
@@ -94,16 +108,54 @@ const updateHotel = async (req, res) => {
     }
 }
 
-const getAdminData = async (req, res) => {
-    const { token } = req.headers;
+const getFlights = async (req, res) => {
     try {
-        const data = jwt.verify(token, tokenSecretKey);
-        const admin = await Admin.findOne({ email: data.email });
-        return res.send({ message: "Success", data: admin })
+        const flights = await Flight.find();
+        return res.send({ message: "Success", data: flights })
     }
     catch (e) {
         return res.status(401).send({ message: "Error", e })
     }
-
 }
-module.exports = { adminLogin, getUsers, deleteUser, getHotels, deleteHotel, addHotel, getAdminData ,updateHotel};
+
+const deleteFlight = async (req, res) => {
+    const { token } = req.headers;
+    const { id } = req.params;
+    try {
+        const admin = jwt.verify(token, tokenSecretKey);
+        const flight = await Flight.findByIdAndDelete(id);
+        return res.send({ message: "Success", data: flight })
+    }
+    catch (e) {
+        return res.status(401).send({ message: "Error", e })
+    }
+}
+
+const addFlight = async (req, res) => {
+    const { data } = req.body;
+    const { token } = req.headers;
+    try {
+        const admin = jwt.verify(token, tokenSecretKey);
+        const flight = await Flight.create(data);
+        return res.send({ message: "Success", data: flight })
+    }
+    catch (e) {
+        return res.status(401).send({ message: "Error", e })
+    }
+}
+
+const updateFlight = async (req, res) => {
+    const { data } = req.body;
+    const { token } = req.headers;
+    const { id } = req.params;
+    try {
+        const admin = jwt.verify(token, tokenSecretKey);
+        const flight = await Flight.findOneAndUpdate({ _id: id }, data, { new: true });
+        return res.send({ message: "Success", data: flight })
+    }
+    catch (e) {
+        return res.status(401).send({ message: "Error", e })
+    }
+}
+
+module.exports = { adminLogin, getUsers, deleteUser, getHotels, deleteHotel, addHotel, getAdminData, updateHotel,getFlights,deleteFlight,addFlight,updateFlight };
