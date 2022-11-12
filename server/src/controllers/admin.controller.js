@@ -80,6 +80,20 @@ const addHotel = async (req, res) => {
     }
 }
 
+const updateHotel = async (req, res) => {
+    const { data } = req.body;
+    const { token } = req.headers;
+    const { id } = req.params;
+    try {
+        const admin = jwt.verify(token, tokenSecretKey);
+        const hotel = await Hotel.findOneAndUpdate({ id }, data, { new: true });
+        return res.send({ message: "Success", data: hotel })
+    }
+    catch (e) {
+        return res.status(401).send({ message: "Error", e })
+    }
+}
+
 const getAdminData = async (req, res) => {
     const { token } = req.headers;
     try {
@@ -92,4 +106,4 @@ const getAdminData = async (req, res) => {
     }
 
 }
-module.exports = { adminLogin, getUsers, deleteUser, getHotels, deleteHotel, addHotel, getAdminData };
+module.exports = { adminLogin, getUsers, deleteUser, getHotels, deleteHotel, addHotel, getAdminData ,updateHotel};
