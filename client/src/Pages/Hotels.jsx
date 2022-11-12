@@ -1,4 +1,4 @@
-import { Box, Checkbox, filter, Flex, Image, Spacer, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Checkbox, filter, Flex, Image, Spacer, Stack, Text } from "@chakra-ui/react"
 import { Ads } from "../Components/Ads"
 import { Sidebar } from "../Components/Sidebar"
 import {useDispatch,useSelector} from "react-redux"
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { getHotels } from "../redux/hotels/hotels.actions"
 import {ImLocation} from "react-icons/im"
 import { Link } from "react-router-dom"
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 export const Hotels = () => {
     
@@ -26,14 +27,18 @@ const handleFilter=(arr)=>{
 console.log(filterData)
     return (
         <>
+       
         <Box w='100%'  bg="rgb(245,245,245)">
+          
         <Flex  gap='20px' bg="rgb(245,245,245)">
             <Box>
             <Sidebar handleFilter={handleFilter}/>
             </Box>
             <Spacer/>
-
+            {loading?<ScaleLoader
+ margin="50px" size={18} color='teal' />:
             <Box marginTop='20px'>
+                 
                 {
                     filterData.map((hotel)=>(
                         <Flex  key={hotel._id} marginTop='20px'>
@@ -76,6 +81,7 @@ console.log(filterData)
                 
               
             </Box>
+}
             <Spacer/>
             <Box>
             <Ads/>
