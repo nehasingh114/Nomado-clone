@@ -15,7 +15,7 @@ app.delete('/hotels/:id', deleteHotel);
 
 app.post('/hotels/add', addHotel);
 
-app.patch('/hotels/update', updateHotel);
+app.patch('/hotels/update/:id', updateHotel);
 
 app.post('/redirect', getAdminData);
 
