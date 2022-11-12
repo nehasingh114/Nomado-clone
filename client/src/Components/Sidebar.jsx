@@ -1,6 +1,56 @@
-import { Box, Checkbox, Grid, GridItem, Stack, Text } from "@chakra-ui/react"
-
-export const Sidebar=()=>{
+import { Box, Button, Checkbox, CheckboxGroup, Grid, GridItem, Stack, Text } from "@chakra-ui/react"
+import { useState } from "react";
+import {FaStar} from "react-icons/fa"
+import { useSelector } from "react-redux";
+export const Sidebar=({handleFilter})=>{
+    const {loading,data}=useSelector((store)=>store.hotels)
+    const [filteredData,setfilteredData]=useState([])
+    //console.log(data});
+     const handlegRating=(e)=>{
+        let arr=[]
+    // console.log(e.target.value)
+        if (e.target.value === "Good") {
+			data.filter((data) => {
+				if (data["uitk-text 5"] === "Good") {
+					// filteredData.push(data)
+                    arr.push(data)
+				}
+			});
+		}
+        else if (e.target.value === "Very Good") { 
+			data.filter((data) => {
+				if (data["uitk-text 5"] === "Very Good") {
+					// filteredData.push(data)
+                    arr.push(data)
+				}
+			});
+		}
+        else if (e.target.value === "Wonderful") {
+			data.filter((data) => {
+				if (data["uitk-text 5"] === "Wonderful") {
+					// filteredData.push(data)
+                    arr.push(data)
+				}
+			});
+		}
+        else if(e.target.value==="Fully refundable"){
+            data.filter((data)=>{
+                if(data["uitk-text 2"]=="Fully refundable"){
+                    arr.push(data)
+                }
+            })
+        }
+        else if(e.target.value==="Free airport shuttle"){
+            data.filter((data)=>{
+                if(data["uitk-text 2"]=="Free airport shuttle"){
+                    arr.push(data)
+                }
+            })
+        }
+       setfilteredData(arr)
+       handleFilter(arr)
+ }
+ //console.log(filteredData);
     return (
         <>
         
@@ -17,7 +67,7 @@ export const Sidebar=()=>{
                         <Checkbox size='md' colorScheme='green' >
                             Times Square
                         </Checkbox>
-                        <Checkbox size='md' colorScheme='green' >
+                        <Checkbox value="Free airport shuttle" onChange={handlegRating} size='md' colorScheme='green' >
                             Free airport shuttle
                         </Checkbox>
                         <Checkbox size='md' colorScheme='green' >
@@ -29,21 +79,25 @@ export const Sidebar=()=>{
 
                     </Stack>
 
-                    <Text  textAlign='left' marginTop="20px" fontSize="xl">Guest rating</Text>
-                    <Stack spacing={[1, 1]} direction={['column', 'column']}>
-                    <Checkbox size='md' colorScheme='green' >
+                    <Text  textAlign='left' marginTop="20px" fontSize="xl" >Guest rating</Text>
+                    
+                   
+                    <CheckboxGroup  colorScheme='green' defaultValue={['naruto', 'kakashi']}>
+                    <Stack  spacing={[1, 1]} direction={['column', 'column']}>
+                    <Checkbox value="Any" onChange={handlegRating} size='md' colorScheme='green' >
                             Any
                         </Checkbox>
-                        <Checkbox size='md' colorScheme='green' >
+                        <Checkbox value="Wonderful" onChange={handlegRating} size='md' colorScheme='green' >
                             Wonderful 4.5+
                         </Checkbox>
-                        <Checkbox size='md' colorScheme='green' >
+                        <Checkbox value="Very Good" onChange={handlegRating} size='md' colorScheme='green' >
                             Very good 4+
                         </Checkbox>
-                        <Checkbox size='md' colorScheme='green' >
+                        <Checkbox value="Good" onChange={handlegRating} size='md' colorScheme='green' >
                             Good 3.5+
                         </Checkbox>
                     </Stack>
+                    </CheckboxGroup>
                     <Text textAlign='left' marginTop="20px" fontSize="xl">Star rating</Text>
                     <Grid templateAreas={`"one two three"
                                           "four five none"
@@ -55,16 +109,16 @@ export const Sidebar=()=>{
                     color='blackAlpha.700'
                     fontWeight='bold'
                     >
-                     <GridItem bg="white" border="1px solid" borderRadius="5px"  area={'one'}>1 star</GridItem>
-                     <GridItem bg="white"  border="1px solid"  borderRadius="5px"     area={'two'}>2 star</GridItem>
-                     <GridItem bg="white"  border="1px solid"   borderRadius="5px"     area={'three'}>3 star</GridItem>
-                     <GridItem bg="white"  border="1px solid"  borderRadius="5px"     area={'four'}>4 star</GridItem>
-                     <GridItem bg="white"  border="1px solid"   borderRadius="5px"     area={'five'}>5 star</GridItem>
+                     <GridItem bg="white" borderRadius="5px"  area={'one'}><Button bg='1px solid'>1- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"   borderRadius="5px"     area={'two'}><Button bg='1px solid'>2- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"    borderRadius="5px"     area={'three'}><Button bg='1px solid'>3- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"   borderRadius="5px"     area={'four'}><Button bg='1px solid'>4- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"    borderRadius="5px"     area={'five'}><Button bg='1px solid'>5-  <FaStar/></Button></GridItem>
                      <GridItem  area={'none'}></GridItem>
                     </Grid>
                     <Text textAlign='left' marginTop="20px" fontSize="xl">Payment type</Text>
                     <Stack spacing={[1, 1]} direction={['column', 'column']}>
-                    <Checkbox size='md' colorScheme='green' >
+                    <Checkbox value="Fully refundable" onChange={handlegRating} size='md' colorScheme='green' >
                             Fully refunded
                         </Checkbox>
                         <Checkbox size='md' colorScheme='green' >
