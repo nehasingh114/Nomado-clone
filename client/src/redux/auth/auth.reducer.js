@@ -1,4 +1,4 @@
-import { AUTH_ERROR, AUTH_LOADING, AUTH_SIGNIN_SUCCESS } from "./auth.types";
+import { AUTH_ERROR, AUTH_LOADING, AUTH_SIGNIN_SUCCESS, AUTH_SIGNUP_SUCCESS } from "./auth.types";
 
 const initState = {
     loading: false,
@@ -25,6 +25,16 @@ export const authReducer = (state = initState, action) => {
             }
         }
         case AUTH_SIGNIN_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: false,
+                token: action.token,
+                isAuth: true,
+                data: action.user
+            }
+        }
+        case AUTH_SIGNUP_SUCCESS: {
             return {
                 ...state,
                 loading: false,

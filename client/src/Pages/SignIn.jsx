@@ -88,7 +88,7 @@ export const SignIn = () => {
                 </Heading>
                 <form onSubmit={handleSubmit}>
                     <Box p='2px 10px' border='2px solid gray' mt='20px'>
-                        <Text   fontSize='12px' fonTWeight={500} color='GrayText'>Email address</Text>
+                        <Text fontSize='12px' fonTWeight={500} color='GrayText'>Email address</Text>
                         <Input variant='unstyled' p='0px' mt='0px' value={userData.email} onChange={handleUser} name='email' />
                     </Box>
                     <Box p='2px 10px' border='2px solid gray' mt='20px'>
@@ -107,15 +107,15 @@ export const SignIn = () => {
                     <Text mt='20px' fontSize='14px'>
                         By signing in, I agree to the Orbitz Terms and Conditions, Privacy Statement and Orbitz Rewards Terms and Conditions.
                     </Text>
-                    <Button w='100%' colorScheme={'pink'} mt='30px' type='submit' isLoading={loading}>
+                    <Button w='100%' colorScheme={'teal'} mt='30px' type='submit' isLoading={loading}>
                         Sign in
                     </Button>
                 </form>
-                <Text color='blue' fontSize='14px' textAlign={'center'} mt='25px'>
+                <Text color='blue' fontSize='14px' textAlign={'center'} mt='25px' style={{cursor:"pointer"}}>
                     Forgot password?
                 </Text>
                 <Text fontSize='14px' textAlign={'center'} mt='25px'>
-                    Don't have an account?&nbsp;<span style={{ color: "blue" }}>Create one</span>
+                    Don't have an account?&nbsp;<span style={{ color: "blue",cursor:"pointer" }} onClick={() => navigate('/signup')} >Create one</span>
                 </Text>
             </Box>
         </Box>
