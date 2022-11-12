@@ -5,6 +5,7 @@ import {useDispatch,useSelector} from "react-redux"
 import { useEffect, useState } from "react"
 import { getHotels } from "../redux/hotels/hotels.actions"
 import {ImLocation} from "react-icons/im"
+import { Link } from "react-router-dom"
 
 export const Hotels = () => {
     
@@ -31,15 +32,21 @@ console.log(filterData)
             <Sidebar handleFilter={handleFilter}/>
             </Box>
             <Spacer/>
+
             <Box marginTop='20px'>
                 {
                     filterData.map((hotel)=>(
                         <Flex  key={hotel._id} marginTop='20px'>
                         <Box w='40%' >
+                            <Link to={`/hotels/${hotel._id}`}>
                             <Image  objectFit='cover'  src={hotel["uitk-image-media src 2"]||hotel["uitk-image-media src"] || hotel["uitk-image-media src 3"] || hotel["uitk-image-media src 4"]} alt="1"/>
+                            </Link>
+                          
     
                         </Box>
+                       
                         <Box w='60%' bg='white' padding="10px">
+                        <Link to={`/hotels/${hotel._id}`}>
                             <Text textAlign="left" fontSize="20px" fontWeight="bold">{hotel["uitk-heading"]}</Text>
                             <Flex>
                                 <Box paddingTop='5px'><ImLocation/></Box>
@@ -60,8 +67,9 @@ console.log(filterData)
                                     <Text textAlign="left" fontWeight='bold'>{hotel["uitk-text 9"]}</Text>
                                 </Box>
                             </Flex>
-                            
+                            </Link>
                         </Box>
+                       
                     </Flex>
                     ))
                 }
