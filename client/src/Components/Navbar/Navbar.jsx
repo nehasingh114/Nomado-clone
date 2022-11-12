@@ -19,11 +19,13 @@ import {
     ChevronDownIcon,
   } from "@chakra-ui/icons"
   import { useMediaQuery } from "@chakra-ui/react";
+import { Link } from 'react-router-dom';
 
 
 
 const Navbar = () => {
   const [Display] = useMediaQuery('(min-width: 800px)')
+  
 return (
 <div>
 {Display?<BigScreen/>:<SmallScreen/>}
@@ -43,18 +45,19 @@ return (
     More travel
       </MenuButton>
     <MenuList className={style.menulist}>
-      <MenuItem className={style.option} minH='48px'>
+   <Link to={"/stays"} className={style.link}>   <MenuItem className={style.option} minH='48px'>
       <BiBuildingHouse/>
         <span><Text>Stays</Text> </span>
       </MenuItem>
-   
+      </Link>
+   <Link to="/flight" className={style.link} >
       <MenuItem className={style.option} minH='40px'>
        <SlPlane/>
        
         <span><Text>Flight</Text>
           </span>
       </MenuItem>
-   
+      </Link>
       <MenuItem className={style.option} minH='40px'>
        <BsBagCheckFill/>
        

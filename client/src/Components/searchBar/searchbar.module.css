@@ -38,6 +38,15 @@ background-color: white;
     font-size: 17px;
     font-weight:500;
 }
+.suggestions{
+    /* border: 1px solid red; */
+    width: 260px;
+overflow: auto;
+background-color: white;
+justify-content: center;
+position: absolute;
+margin-left: 25px;
+}
 
 
 
@@ -91,4 +100,19 @@ background-color: white;
 }
 .box{
     display: flex;
+}
+.flightdiv{
+    /* border: 1px solid red; */
+    /* margin-left: 250px; */
+    display: flex;
+    width: 100%;
+    align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+.flightdiv >div{
+align-self: center;
+width: 33%;
+/* border: 1px solid red; */
+
 }

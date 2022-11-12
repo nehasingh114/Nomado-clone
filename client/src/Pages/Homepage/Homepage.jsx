@@ -4,8 +4,10 @@ import { Box, Image } from "@chakra-ui/react"
 import SearchBar from '../../Components/searchBar/SearchBar'
 import Navbar from '../../Components/Navbar/Navbar'
 import { Footer } from '../../Components/Footer/Footer'
+import { Link } from 'react-router-dom'
 
 const Homepage = () => {
+
   return (
     <div>
       <Navbar />

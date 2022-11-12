@@ -6,8 +6,8 @@ import { useEffect } from "react"
 import { getHotels } from "../store/hotels/hotels.actions"
 import {ImLocation} from "react-icons/im"
 
-export const Hotels = () => {
-
+export const Hotels = (text) => {
+console.log(text);
     const {loading,data}=useSelector((store)=>store.hotels)
     const dispatch=useDispatch()
 
