@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { BookHotel } from "../Pages/BookHotel"
 import { ConfirmPayment } from "../Pages/ConfirmPayment"
+import { Flights } from "../Pages/Flights"
 import { Home } from "../Pages/Home"
 import { HotelCheckout } from "../Pages/HotelCheckout"
 import { Hotels } from "../Pages/Hotels"
@@ -14,6 +15,7 @@ export const AllRoutes = () => {
             <Route path='/signin' element={<SignIn />} />
             <Route path="/hotels" element={<Hotels />} />
             <Route path='/hotels/:id' element={<BookHotel />} />
+            <Route path="/flights" element={<Flights/>}/>
             <Route path='/checkout/bookhotel'
                 element={<PrivateRoute>
                     <HotelCheckout />
