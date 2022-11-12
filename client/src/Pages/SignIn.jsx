@@ -82,16 +82,16 @@ export const SignIn = () => {
                     <Logo iconColor={'teal'} w='200px' h='40px' />
                 </Link>
             </Flex>
-            <Box margin='0px auto' p='20px 10px' w={{ base: "100%", sm: "350px", md: "420px" }}>
-                <Heading fontSize='25px'>
+            <Box margin='0px auto' p='20px 10px' w={{ base: "100%", sm: "250px", md: "430px" }}>
+                <Heading fontSize='23px'>
                     Sign In
                 </Heading>
                 <form onSubmit={handleSubmit}>
-                    <Box p='2px 10px' border='2px solid teal' mt='20px'>
-                        <Text fontSize='12px' fonTWeight={500} color='GrayText'>Email address</Text>
+                    <Box p='2px 10px' border='2px solid gray' mt='20px'>
+                        <Text   fontSize='12px' fonTWeight={500} color='GrayText'>Email address</Text>
                         <Input variant='unstyled' p='0px' mt='0px' value={userData.email} onChange={handleUser} name='email' />
                     </Box>
-                    <Box p='2px 10px' border='2px solid teal' mt='20px'>
+                    <Box p='2px 10px' border='2px solid gray' mt='20px'>
                         <Text fontSize='12px' fonTWeight={500} color='GrayText'>Password</Text>
                         <Flex>
                             <Input variant='unstyled' p='0px' mt='0px' type={!showPass ? 'password' : "text"} value={userData.password} onChange={handleUser} name='password' />
@@ -107,7 +107,7 @@ export const SignIn = () => {
                     <Text mt='20px' fontSize='14px'>
                         By signing in, I agree to the Orbitz Terms and Conditions, Privacy Statement and Orbitz Rewards Terms and Conditions.
                     </Text>
-                    <Button w='100%' colorScheme={'teal'} mt='30px' type='submit' isLoading={loading}>
+                    <Button w='100%' colorScheme={'pink'} mt='30px' type='submit' isLoading={loading}>
                         Sign in
                     </Button>
                 </form>
