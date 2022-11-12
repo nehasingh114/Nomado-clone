@@ -8,7 +8,7 @@ export const Sidebar=({handleFilter})=>{
     //console.log(data});
      const handlegRating=(e)=>{
         let arr=[]
-    // console.log(e.target.value)
+     
         if (e.target.value === "Good") {
 			data.filter((data) => {
 				if (data["uitk-text 5"] === "Good") {
@@ -43,6 +43,41 @@ export const Sidebar=({handleFilter})=>{
         else if(e.target.value==="Free airport shuttle"){
             data.filter((data)=>{
                 if(data["uitk-text 2"]=="Free airport shuttle"){
+                    arr.push(data)
+                }
+            })
+        }
+        else if(e.target.value=="1"){
+            data.filter((data)=>{
+                if(data["uitk-text 3"]<2){
+                    arr.push(data)
+                }
+            })
+        }
+        else if(e.target.value=="2"){
+            data.filter((data)=>{
+                if(data["uitk-text 3"]>=2 && data["uitk-text 3"]<3){
+                    arr.push(data)
+                }
+            })
+        }
+        else if(e.target.value=="3"){
+            data.filter((data)=>{
+                if(data["uitk-text 3"]>=3 && data["uitk-text 3"]<4){
+                    arr.push(data)
+                }
+            })
+        }
+        else if(e.target.value=="4"){
+            data.filter((data)=>{
+                if(data["uitk-text 3"]>=4 && data["uitk-text 3"]<5){
+                    arr.push(data)
+                }
+            })
+        }
+        else if(e.target.value=="5"){
+            data.filter((data)=>{
+                if(data["uitk-text 3"]>=5){
                     arr.push(data)
                 }
             })
@@ -109,11 +144,11 @@ export const Sidebar=({handleFilter})=>{
                     color='blackAlpha.700'
                     fontWeight='bold'
                     >
-                     <GridItem bg="white" borderRadius="5px"  area={'one'}><Button bg='1px solid'>1- <FaStar/></Button></GridItem>
-                     <GridItem bg="white"   borderRadius="5px"     area={'two'}><Button bg='1px solid'>2- <FaStar/></Button></GridItem>
-                     <GridItem bg="white"    borderRadius="5px"     area={'three'}><Button bg='1px solid'>3- <FaStar/></Button></GridItem>
-                     <GridItem bg="white"   borderRadius="5px"     area={'four'}><Button bg='1px solid'>4- <FaStar/></Button></GridItem>
-                     <GridItem bg="white"    borderRadius="5px"     area={'five'}><Button bg='1px solid'>5-  <FaStar/></Button></GridItem>
+                     <GridItem bg="white" borderRadius="5px"  area={'one'}><Button onClick={handlegRating} value="1" bg='1px solid'>1- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"   borderRadius="5px"     area={'two'}><Button onClick={handlegRating} value="2" bg='1px solid'>2- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"    borderRadius="5px"     area={'three'}><Button onClick={handlegRating} value="3" bg='1px solid'>3- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"   borderRadius="5px"     area={'four'}><Button onClick={handlegRating} value="4" bg='1px solid'>4- <FaStar/></Button></GridItem>
+                     <GridItem bg="white"    borderRadius="5px"     area={'five'}><Button onClick={handlegRating} value="5" bg='1px solid'>5-  <FaStar/></Button></GridItem>
                      <GridItem  area={'none'}></GridItem>
                     </Grid>
                     <Text textAlign='left' marginTop="20px" fontSize="xl">Payment type</Text>

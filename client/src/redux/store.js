@@ -5,10 +5,12 @@ import storage from 'redux-persist/lib/storage';
 
 import { singleHotelReducer } from "./singleHotel/singleHotel.reducer";
 import { authReducer } from "./auth/auth.reducer";
+import { hotelsReducer } from "./hotels/hotels.reducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    singleHotel: singleHotelReducer
+    singleHotel: singleHotelReducer,
+    hotels:hotelsReducer
 })
 
 const persistConfig = {
