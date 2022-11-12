@@ -1,13 +1,19 @@
-import { Box, Flex, Icon, Text, FormControl, FormLabel, Input, Checkbox, Divider, Image, UnorderedList, ListItem, Button, useToast } from "@chakra-ui/react"
+import { Box, Flex, Icon, Text, FormControl, FormLabel, Input, Checkbox, Divider, Image, UnorderedList, ListItem, Button, useToast, useDisclosure } from "@chakra-ui/react"
 import { useState } from "react"
 import { AiFillCreditCard, AiFillLock } from "react-icons/ai"
 import { BsFillPersonFill } from "react-icons/bs"
 import { TiTick } from "react-icons/ti"
 import { useSelector } from "react-redux"
+import { PaymentModal } from "./PaymentModal"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export const CheckoutMainSection = () => {
-    const { rooms } = useSelector(store => store.singleHotel);
-    const [user, setUser] = useState({ firstName: "", lastName: "", number: "" });
+    const { data: hotelData, rooms, roomType, refundable, price, checkin, checkout } = useSelector(store => store.singleHotel);
+    const { data } = useSelector(store => store.auth);
+    const payModal = useDisclosure();
+    const navigate = useNavigate()
+    const [user, setUser] = useState({ firstName: data.firstName || "", lastName: data.lastName || "", number: "" });
     const [card, setCard] = useState({ name: "", number: "", secret: "", zip: "" });
     const toast = useToast();
     const handleUser = (e) => {
@@ -30,33 +36,55 @@ export const CheckoutMainSection = () => {
             })
             return;
         }
-        if(cardNumber.length!==16){
+        if (cardNumber.length !== 16) {
             toast({
                 title: 'Enter valid card number.',
                 status: 'error',
                 duration: 9000,
                 isClosable: true,
-              })
-              return;
+            })
+            return;
         }
-        if(secret.length!==4){
+        if (secret.length !== 4) {
             toast({
                 title: 'Enter valid 4-digit Security code.',
                 status: 'error',
                 duration: 3000,
                 isClosable: true,
-              })
-              return;
+            })
+            return;
         }
-        if(zip.length!==6){
+        if (zip.length !== 6) {
             toast({
                 title: 'Enter valid ZIP code.',
                 status: 'error',
                 duration: 3000,
                 isClosable: true,
-              })
-              return;
+            })
+            return;
         }
+        if (number.length < 6) {
+            toast({
+                title: 'Enter valid mobile number.',
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
+            return;
+        }
+        payModal.onOpen();
+    }
+
+    const paymentConfirmed = () => {
+        payModal.onClose()
+        const total = price + (roomType.value * rooms.length);
+        const travellerName = user.firstName + ' ' + user.lastName
+        let creds = { user: data._id, hotel: hotelData._id, roomType, checkin, checkout, rooms, refundable, travellerNumber: +user.number, price: total, travellerName };
+        axios.post('https://venomous-plough-7848.vercel.app/api/bookhotel', creds).then((res) => {
+            if (res.data.message === 'Booking success.') {
+                navigate('/confirmpayment/stays', { state: res.data.trip })
+            }
+        })
     }
     return (
         <Box flexGrow={1}>
@@ -65,6 +93,9 @@ export const CheckoutMainSection = () => {
                 <Box>
                     <Text fontSize='14px' fontWeight={600}>
                         Signed In as
+                    </Text>
+                    <Text>
+                        {data.email}
                     </Text>
                 </Box>
             </Flex>
@@ -94,7 +125,7 @@ export const CheckoutMainSection = () => {
                     <FormControl isRequired mt='15px'>
                         <FormLabel fontSize='14px' fontWeight={600} color='GrayText'>Mobile Phone Number</FormLabel>
                         <Input borderColor={'blackAlpha.700'} placeholder='Your Number'
-                            name='number' value={user.number} onChange={handleUser} />
+                            name='number' type='number' value={user.number} onChange={handleUser} />
                     </FormControl>
                     <Checkbox mt='10px' color='blue' fontSize='13px'>
                         Receive text alerts about this trip. Message and data rates may apply.
@@ -166,15 +197,15 @@ export const CheckoutMainSection = () => {
                     <ListItem>
                         No refunds will be issued for late check-in or early check-out.
                     </ListItem>
-                    <listItem>
+                    <ListItem>
                         Stay extensions require a new reservation.
-                    </listItem>
+                    </ListItem>
                     <ListItem>
                         Front desk staff will greet guests on arrival.
                     </ListItem>
                 </UnorderedList>
                 <Text fontSize='13px' color='GrayText' mt='20px'>
-                    By clicking on the button below, I acknowledge that I have reviewed the Privacy Statement Opens in a new window. and Government Travel Advice Opens in a new window. and have reviewed and accept the Rules & Restrictions Opens in a new window. and Terms of Use Opens in a new window..
+                    By clicking on the button below, I acknowledge that I have reviewed the Privacy Statement and Government Travel Advic and have reviewed and accept the Rules & Restrictions and Terms of Use .
                 </Text>
                 <Button colorScheme={'teal'} mt='20px' p='14px 20px' onClick={handleSubmit}>
                     Complete Booking
@@ -186,6 +217,7 @@ export const CheckoutMainSection = () => {
                     This payment will be processed in the U.S. This does not apply when the travel provider (airline/hotel/rail, etc.) processes your payment.
                 </Text>
             </Box>
+            <PaymentModal payModal={payModal} user={user} paymentConfirmed={paymentConfirmed} />
         </Box>
     )
 }
