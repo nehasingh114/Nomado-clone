@@ -5,6 +5,7 @@ import { Home } from "../Pages/Home"
 import { HotelCheckout } from "../Pages/HotelCheckout"
 import { Hotels } from "../Pages/Hotels"
 import { SignIn } from "../Pages/SignIn"
+import { Trip } from "../Pages/Trips"
 import { PrivateRoute } from "./PrivateRoute"
 
 export const AllRoutes = () => {
@@ -19,6 +20,7 @@ export const AllRoutes = () => {
                     <HotelCheckout />
                 </PrivateRoute>} />
             <Route path='/confirmpayment/stays' element={<ConfirmPayment />} />
+            <Route path='/trips' element={<Trip />} />
         </Routes>
     )
 }
