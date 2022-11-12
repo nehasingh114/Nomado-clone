@@ -79,7 +79,7 @@ export const ConfirmPayment = () => {
                         </Box>
 
                         <Box display='flex' gap='20px' flexWrap='wrap' mt='20px'>
-                            <Button colorScheme={'green'}>
+                            <Button colorScheme={'green'} onClick={() => navigate('/trips')}>
                                 See Trips
                             </Button>
                             <Button colorScheme={"orange"} onClick={() => navigate('/')}>
