@@ -3,7 +3,7 @@ import { Ads } from "../Components/Ads"
 import { Sidebar } from "../Components/Sidebar"
 import {useDispatch,useSelector} from "react-redux"
 import { useEffect, useState } from "react"
-import { getHotels } from "../store/hotels/hotels.actions"
+import { getHotels } from "../redux/hotels/hotels.actions"
 import {ImLocation} from "react-icons/im"
 
 export const Hotels = () => {

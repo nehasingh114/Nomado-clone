@@ -12,7 +12,7 @@ const adminLogin = async (req, res) => {
     try {
         const admin = await Admin.findOne({ email, password });
         const token = jwt.sign({ email, role: admin.role }, tokenSecretKey);
-        return res.send({ message: "Login success.", admin, token })
+        return res.send({ message: "Login success.", admin, token });
     }
     catch (e) {
         return res.status(404).send({ message: 'Unauthenticated', e })
@@ -67,4 +67,29 @@ const deleteHotel = async (req, res) => {
     }
 }
 
-module.exports = { adminLogin, getUsers, deleteUser, getHotels, deleteHotel };
+const addHotel = async (req, res) => {
+    const { data } = req.body;
+    const { token } = req.headers;
+    try {
+        const admin = jwt.verify(token, tokenSecretKey);
+        const hotel = await Hotel.create(data);
+        return res.send({ message: "Success", data: hotel })
+    }
+    catch (e) {
+        return res.status(401).send({ message: "Error", e })
+    }
+}
+
+const getAdminData = async (req, res) => {
+    const { token } = req.headers;
+    try {
+        const data = jwt.verify(token, tokenSecretKey);
+        const admin = await Admin.findOne({ email: data.email });
+        return res.send({ message: "Success", data: admin })
+    }
+    catch (e) {
+        return res.status(401).send({ message: "Error", e })
+    }
+
+}
+module.exports = { adminLogin, getUsers, deleteUser, getHotels, deleteHotel, addHotel, getAdminData };
