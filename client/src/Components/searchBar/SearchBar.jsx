@@ -70,8 +70,8 @@ setData(res.sr);
 
 const onSubmit=async(e)=>{
     e.preventDefault();
-      Hotels(text);
-    navigate("/hotels");
+    //   Hotels(text);
+    navigate("/hotels",{state:text});
 }
 
 
