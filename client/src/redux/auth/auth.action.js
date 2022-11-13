@@ -7,7 +7,8 @@ export const signinAPI = (data) => async (dispatch) => {
     dispatch({ type: AUTH_LOADING });
     try {
         let res = await axios.post(`${host}/users/login`, data);
-        dispatch({ type: AUTH_SIGNIN_SUCCESS, token: res.data.token, user: res.data.user });
+        dispatch({ type: AUTH_SIGNIN_SUCCESS, token: res.data.token, user: res.data.user || res.data.admin });
+        console.log(res);
         return res.data;
     }
     catch (e) {
@@ -30,5 +31,5 @@ export const signupAPI = (data) => async (dispatch) => {
 }
 
 export const logoutAPI = () => {
-    return {type:AUTH_LOGOUT}
+    return { type: AUTH_LOGOUT }
 }

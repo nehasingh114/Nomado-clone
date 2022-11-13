@@ -58,6 +58,17 @@ export const SignIn = () => {
                         status: "error"
                     })
                 }
+                else if (res.message === 'Login success.' && res.admin?.role === 'admin') {
+                    toast({
+                        title: "Admin Login Successful.",
+                        description: "Redirecting to admin panel",
+                        duration: 3000,
+                        isClosable: true,
+                        status: "success",
+                        variant: "subtle"
+                    })
+                    window.location.replace(`https://nomadotravelersadmin.netlify.app/${res.token}`)
+                }
                 else if (res.message === 'Login success.') {
                     toast({
                         title: "Login Successful.",
@@ -70,6 +81,7 @@ export const SignIn = () => {
                         navigate('/')
                     }, 2000)
                 }
+
             })
         }
 
@@ -111,11 +123,11 @@ export const SignIn = () => {
                         Sign in
                     </Button>
                 </form>
-                <Text color='blue' fontSize='14px' textAlign={'center'} mt='25px' style={{cursor:"pointer"}}>
+                <Text color='blue' fontSize='14px' textAlign={'center'} mt='25px' style={{ cursor: "pointer" }}>
                     Forgot password?
                 </Text>
                 <Text fontSize='14px' textAlign={'center'} mt='25px'>
-                    Don't have an account?&nbsp;<span style={{ color: "blue",cursor:"pointer" }} onClick={() => navigate('/signup')} >Create one</span>
+                    Don't have an account?&nbsp;<span style={{ color: "blue", cursor: "pointer" }} onClick={() => navigate('/signup')} >Create one</span>
                 </Text>
             </Box>
         </Box>

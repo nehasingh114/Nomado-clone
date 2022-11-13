@@ -56,7 +56,7 @@ export const RoomCard = ({ data, i }) => {
     };
 
     const setRoom = (room) => {
-        if(isAuth) {
+        if(!isAuth) {
             modal.onOpen();
         }
         else {
