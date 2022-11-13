@@ -11,25 +11,27 @@ import Navbar from "../Components/Navbar/Navbar"
 import { Footer } from "../Components/Footer/Footer"
 
 export const Hotels = () => {
-    // console.log(text);
+
+    
     const { loading, data } = useSelector((store) => store.hotels)
     const [filterData, setfilterData] = useState(data)
-    const { state } = useLocation();
+    const {state}=useLocation()
+    console.log(state)
+
     const dispatch = useDispatch()
 
     const handleFilter = (arr) => {
-
-        setfilterData(arr)
+        let arr1=[]
+        arr.filter((item)=>{
+            if(item["uitk-image-media src"]!=="" || item["uitk-image-media src 2"]!=="" || item["uitk-image-media src 3"]!=="" || item["uitk-image-media src 4"]!==""){
+                arr1.push(item)
+            } 
+            //console.log(arr)
+            setfilterData(arr1)
+        })
+        //setfilterData(arr)
     }
-    // let arr=[]
-    // if (e.target.value === "Good") {
-    //     data.filter((data) => {
-    //         if (data["uitk-text 5"] === "Good") {
-    //             // filteredData.push(data)
-    //             arr.push(data)
-    //         }
-    //     });
-    // }
+   
     useEffect(() => {
         let arr = []
         dispatch(getHotels()).then((res) =>
@@ -77,7 +79,9 @@ export const Hotels = () => {
                                                 <Text textAlign="left" fontSize="20px" fontWeight="bold">{hotel["uitk-heading"]}</Text>
                                                 <Flex>
                                                     <Box paddingTop='5px'><ImLocation /></Box>
+
                                                     <Box marginLeft='10px' ><Text textAlign="left" >{state||hotel["uitk-text"]}</Text></Box>
+
                                                 </Flex>
 
 
