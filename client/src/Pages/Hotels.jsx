@@ -5,9 +5,12 @@ import {useDispatch,useSelector} from "react-redux"
 import { useEffect } from "react"
 import { getHotels } from "../store/hotels/hotels.actions"
 import {ImLocation} from "react-icons/im"
+import { useLocation } from "react-router-dom"
 
-export const Hotels = (text) => {
-console.log(text);
+export const Hotels = () => {
+    const {state}=useLocation()
+
+console.log(state);
     const {loading,data}=useSelector((store)=>store.hotels)
     const dispatch=useDispatch()
 

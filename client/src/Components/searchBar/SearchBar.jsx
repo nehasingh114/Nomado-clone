@@ -9,7 +9,7 @@ import {
     MenuList,
     MenuItem,
   } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const SearchBar = () => {
     const [Children,setChildren]=useState(1);
@@ -70,8 +70,7 @@ setData(res.sr);
 
 const onSubmit=async(e)=>{
     e.preventDefault();
-      Hotels(text);
-    navigate("/hotels");
+    navigate("/hotels",{state:text});
 }
 
 
