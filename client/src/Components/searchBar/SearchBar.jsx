@@ -174,7 +174,7 @@ const SearchBar = () => {
                                         type="datetime-local"
                                     />
                                 </div> : ""}
-                                <Button className={style.Button}>Search</Button>
+                                <Button className={style.Button} onClick={()=>navigate('/flights')}>Search</Button>
                             </div>
 
                         </TabPanel>
