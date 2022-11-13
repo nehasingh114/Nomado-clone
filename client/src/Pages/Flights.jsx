@@ -8,18 +8,30 @@ import {ImLocation} from "react-icons/im"
 import { Link } from "react-router-dom"
 import ScaleLoader from "react-spinners/ScaleLoader";
 import {FaStar} from "react-icons/fa"
+import axios from "axios"
+import Navbar from "../Components/Navbar/Navbar"
+import { Footer } from "../Components/Footer/Footer"
 
 export const Flights = () => {
-    
-
+    const [flights,setFlights]=useState()
+    const getFlights=async()=>{
+        let response=await axios.get("https://venomous-plough-7848.vercel.app/api/admin/flights")
+        setFlights(response.data.data)
+    }
+   
+    useEffect(()=>{
+        getFlights()
+    },[])
+    // console.log(flights)
     return (
         <>
        
         <Box w='100%'  bg="rgb(245,245,245)">
-          
+          <Navbar/>
         <Flex  gap='20px' bg="rgb(245,245,245)">
             <Box>
             {/* <Sidebar handleFilter={handleFilter}/> */}
+            
             <Box bg="rgb(245,245,245)" padding="10px" paddingLeft='20px'>
                     <Text textAlign="left" fontSize="2xl" fontWeight="bold">Filter by</Text>
                     <Flex gap="80px" marginBottom="20px">
@@ -28,13 +40,13 @@ export const Flights = () => {
                         <Stack spacing={[1, 1]} direction={['column', 'column']}>
                        
                         <Checkbox size='sm' colorScheme='green' >
-                           Nonstop (7)
+                           Nonstop
                         </Checkbox>
                         <Checkbox size='sm' colorScheme='green' >
-                            1 Stop (64)
+                            1 Stop
                         </Checkbox>
                         <Checkbox   size='sm' colorScheme='green' >
-                            2+ Stops(6)
+                            2 Stops
                         </Checkbox>
                     </Stack>
                         </Box>
@@ -43,7 +55,7 @@ export const Flights = () => {
                         <Stack spacing={[1, 1]} direction={['column', 'column']}>
                        
                         <Text fontSize='sm' colorScheme='green' >
-                           $ 1,105
+                           $ 605
                         </Text>
                         <Text fontSize='sm' colorScheme='green' >
                             $ 770
@@ -65,52 +77,52 @@ export const Flights = () => {
                         <Stack spacing={[1, 1]} direction={['column', 'column']}>
                        
                         <Checkbox size='sm' colorScheme='green' >
-                           Air India (19)
+                           Air India
                         </Checkbox>
                         <Checkbox size='sm' colorScheme='green' >
-                            Turkish Airlines (14)
+                            Turkish Airlines
                         </Checkbox>
                         <Checkbox   size='sm' colorScheme='green' >
-                            Emirates (3)
+                            Emirates
                         </Checkbox>
                         <Checkbox   size='sm' colorScheme='green' >
-                            Vistara (3)
+                            Vistara
                         </Checkbox>
                         <Checkbox   size='sm' colorScheme='green' >
-                            Etihad Airways (2)
+                            Etihad Airways
                         </Checkbox>
                         <Checkbox   size='sm' colorScheme='green' >
-                            Air Canada (1)
+                            Air Canada
                         </Checkbox>
                         <Checkbox   size='sm' colorScheme='green' >
-                            Air France (1)
+                            Air France
                         </Checkbox>
                     </Stack>
                         </Box>
                         <Box>
                         <Text textAlign="left" fontSize="lg">From</Text>
-                        <Stack spacing={[1, 1]} direction={['column', 'column']}>
+                        <Stack  spacing={[1, 1]} direction={['column', 'column']}>
                        
-                        <Text fontSize='sm' colorScheme='green' >
-                           $ 1,086
+                        <Text  fontSize='sm' colorScheme='green' >
+                           $ 886
                         </Text>
                         <Text fontSize='sm' colorScheme='green' >
                             $ 992
                         </Text>
                         <Text fontSize='sm' colorScheme='green' >
-                            $ 1,473
+                            $ 773
                         </Text>
                         <Text fontSize='sm' colorScheme='green' >
-                            $ 1,105
+                            $ 905
                         </Text>
                         <Text fontSize='sm' colorScheme='green' >
-                            $ 1,018
+                            $ 818
                         </Text>
                         <Text fontSize='sm' colorScheme='green' >
-                            $ 3,299
+                            $ 799
                         </Text>
                         <Text fontSize='sm' colorScheme='green' >
-                            $ 1,386
+                            $ 686
                         </Text>
                     </Stack>
                         </Box>
@@ -151,14 +163,16 @@ export const Flights = () => {
             <Spacer/>
           
             <Box marginTop='20px'>
-                 
-               <Flex bg='white' padding='20px' gap='30px'>
+            {flights?.map((flight)=>(
+
+           
+               <Flex key={flight._id} bg='white' padding='10px' marginTop='20px'>
                 <Box>
-                    <Text fontWeight='bold' fontSize='20px'>2:30am - 4:05pm</Text>
+                    <Text fontWeight='bold' fontSize='20px'>{flight["uitk-text"]}</Text>
                     <Text fontSize='xs'>Delhi (DEL) - London (LHR)</Text>
                     <Flex gap='10px'>
                         <Box boxSize='15px'>
-                        <Image  src="https://images.trvl-media.com/media/content/expus/graphics/static_content/fusion/v0.1b/images/airlines/vector/s/KC_sq.svg"/>
+                        <Image  src={flight["uitk-image-media src"]}/>
                         </Box>
                         <Text fontSize='xs'>  Air Astana</Text>
                     </Flex>
@@ -171,7 +185,7 @@ export const Flights = () => {
                 </Box>
                 <Spacer/>
                 <Box>
-                    <Text textAlign='right' fontWeight='bold' fontSize='25px'>$615.54</Text>
+                    <Text textAlign='right' fontWeight='bold' fontSize='25px'>{flight["uitk-price-a11y"]}</Text>
                     <Text textAlign='right' fontSize='xs'>Rounding per traveler</Text>
                     <Flex gap='10px'>
                         <Box boxSize='15px'>
@@ -182,18 +196,18 @@ export const Flights = () => {
                     
                 </Box>
                </Flex>
-                
+                 ))}
               
             </Box>
 
             <Spacer/>
-            <Box>
+            <Box w='250px'>
             <Image marginBottom="20px" src="https://tpc.googlesyndication.com/simgad/2791718960777221954?"/>
             <Image src="https://tpc.googlesyndication.com/simgad/7473800060073313793?"/>
             </Box>
           
         </Flex>
-           
+           <Footer />
         </Box>
         </>
     )

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, Tabs, TabList, InputGroup, Button, TabPanels, Tab, TabPanel, Input } from '@chakra-ui/react'
+import { Text, Tabs, TabList, InputGroup, Button, TabPanels, Tab, TabPanel, Input, Box, Flex, Icon } from '@chakra-ui/react'
 import style from "./searchbar.module.css"
 import { Hotels } from '../../Pages/Hotels'
 import { HiLocationMarker } from "react-icons/hi"
@@ -9,6 +9,7 @@ import {
     MenuList,
     MenuItem,
 } from '@chakra-ui/react'
+import { ImLocation } from 'react-icons/im';
 import { useNavigate } from 'react-router-dom'
 
 const SearchBar = () => {
@@ -44,7 +45,7 @@ const SearchBar = () => {
     async function searchCity() {
         try {
 
-            if (text.length > 1) {
+            if (text.length >= 1) {
                 const url = `https://venomous-plough-7848.vercel.app/api/search/stays?q=${text}`;
                 let res = await fetch(url);
                 res = await res.json();
@@ -70,8 +71,7 @@ const SearchBar = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        Hotels(text);
-        navigate("/hotels");
+        navigate("/hotels", { state: text });
     }
 
 
@@ -95,14 +95,16 @@ const SearchBar = () => {
                             <TabPanel className={style.TabPanel}>
                                 <div style={{ display: "block" }}>
                                     <Input className={style.myinput} id="query" onChange={(e) => { setText(e.target.value) }} onInput={myInput} placeholder='Going to' />
-                                    <div className={style.suggestions}>
+                                    <Box className={style.suggestions} borderRadius='10px'
+                                        boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px' >
                                         {data?.map((el) => (
-                                            <div style={{ border: "1px solid", gap: "10px", height: "30px", overflow: "auto" }} id={`${el.index}`} onClick={() => onClick(`${el.index}`)}  >
+                                            <Flex style={{ gap: "10px", overflow: "auto" }} id={`${el.index}`} onClick={() => onClick(`${el.index}`)}
+                                                _hover={{ bg: "rgba(0,177,255,0.2)" }} cursor='pointer' p='10px 10px' borderRadius='10px'>
+                                                <Icon as={ImLocation} />
+                                                <h5>{el?.regionNames?.shortName}</h5>
 
-                                                <div>{el.regionNames.fullName}1</div>
-
-                                            </div>
-                                        ))}</div>
+                                            </Flex>
+                                        ))}</Box>
                                 </div>
                                 <Input
                                     className={style.mydate}

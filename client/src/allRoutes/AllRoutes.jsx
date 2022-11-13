@@ -12,8 +12,14 @@ import Flight from "../Pages/Flight/Flight"
 import Homepage from "../Pages/Homepage/Homepage"
 import Stays from "../Pages/stays/Stays";
 import { ChakraProvider } from '@chakra-ui/react';
+import { useEffect } from "react";
 
 export const AllRoutes = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
