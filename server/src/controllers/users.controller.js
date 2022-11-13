@@ -1,10 +1,12 @@
 const User = require('../models/users.model.js');
 const Token = require('../models/tokens.model.js');
 const jwt = require('jsonwebtoken');
+const Admin = require('../models/admin.model.js');
 require('dotenv').config();
 
 const tokenSecretKey = process.env.TOKEN_SECRET_KEY;
 const tokenExpiresIn = process.env.TOKEN_EXPIRES_IN;
+const adminToken = process.env.ADMIN_TOKEN;
 
 const createUser = async (req, res) => {
     try {
@@ -29,10 +31,16 @@ const loginUser = async (req, res) => {
     try {
         const { email, password, keepSigned } = req.body;
         const user = await User.findOne({ email, password });
-        if (!user) {
+        const admin = await Admin.findOne({ email, password });
+        if (!user && !admin) {
             return res.status(404).send({ message: "Invalid credentials." })
         }
-        if (!keepSigned) {
+        if (admin) {
+            const token = jwt.sign({ email, role: admin.role }, adminToken);
+            return res.send({ message: "Login success.", admin, token });
+        }
+
+        if (!keepSigned && user) {
             const token = jwt.sign({ email }, tokenSecretKey, { expiresIn: tokenExpiresIn })
             return res.send({ message: "Login success.", user, token })
         }
