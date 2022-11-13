@@ -346,3 +346,18 @@ margin-top: -25px;
 .moreDesti > img {
     width: 100%;
   }
+  .flightdiv{
+    /* border: 1px solid red; */
+    /* margin-left: 250px; */
+    display: flex;
+    width: 100%;
+    align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+.flightdiv >div{
+align-self: center;
+width: 33%;
+/* border: 1px solid red; */
+
+}

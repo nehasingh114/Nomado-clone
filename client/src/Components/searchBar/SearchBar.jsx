@@ -90,6 +90,7 @@ const onSubmit=async(e)=>{
   </TabList>
 <hr />
   <TabPanels>
+    {/* stays */}
     <TabPanel>
     <TabPanel className={style.TabPanel}>
         <div style={{display:"block"}}>
@@ -128,7 +129,7 @@ className={style.mydate}
 <Button className={style.Button} onClick={onSubmit}>Search</Button>
 </div>
     </TabPanel>
-
+{/* flight */}
     <TabPanel>
     <TabPanel className={style.TabPanel}>
     <Input className={style.myinput} placeholder='Going to'/>
@@ -150,8 +151,8 @@ className={style.mydate}
 <br />
 <div className={style.flightdiv}>
 
-<Input type={"checkbox"} onClick={checked}/>Add Flight
-<Input type={"checkbox"}/>Add car
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
+<div><Input type={"checkbox"}/>Add car</div>
 
 
     {check? <div>
@@ -172,7 +173,7 @@ className={style.mydate}
 </div>
 
     </TabPanel>
-
+{/* car */}
     <TabPanel>
     <TabPanel className={style.TabPanel}>
     <Input className={style.myinput} placeholder='Going to'/>
@@ -195,52 +196,9 @@ className={style.mydate}
 
 
 
-<Input type={"checkbox"} onClick={checked}/>Add Flight
-<Input type={"checkbox"}/>Add car
-
-
-    {check? <div>
-     check in   <Input
-    className={style.mydate} 
- placeholder="Check in"
- size="md"
- type="datetime-local"
-/>
-check out<Input
-className={style.mydate} 
- placeholder="Check out"
- size="md"
- type="datetime-local"
-/>
-    </div>:""}
-<Button className={style.Button}>Search</Button>
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
+<div><Input type={"checkbox"}/>Add car
 </div>
-
-    </TabPanel>
-    <TabPanel>
-    <TabPanel className={style.TabPanel}>
-    <Input className={style.myinput} placeholder='Going to'/>
-    <Input className={style.myinput} placeholder='Leaving from '/>
-    <Input
-    className={style.mydate} 
- placeholder="Check in"
- size="md"
- type="datetime-local"
-/><Input
-className={style.mydate} 
- placeholder="Check out"
- size="md"
- type="datetime-local"
-/>
-    
-</TabPanel>
-
-<br />
-<div className={style.flightdiv}>
-
-<Input type={"checkbox"} onClick={checked}/>Add Flight
-<Input type={"checkbox"}/>Add car
-
 
     {check? <div>
      check in   <Input
@@ -281,8 +239,51 @@ className={style.mydate}
 <br />
 <div className={style.flightdiv}>
 
-<Input type={"checkbox"} onClick={checked}/>Add Flight
-<Input type={"checkbox"}/>Add car
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
+<div><Input type={"checkbox"}/>Add car</div>
+
+
+    {check? <div>
+     check in   <Input
+    className={style.mydate} 
+ placeholder="Check in"
+ size="md"
+ type="datetime-local"
+/>
+check out<Input
+className={style.mydate} 
+ placeholder="Check out"
+ size="md"
+ type="datetime-local"
+/>
+    </div>:""}
+<Button className={style.Button}>Search</Button>
+</div>
+
+    </TabPanel>
+    <TabPanel>
+    <TabPanel className={style.TabPanel}>
+    <Input className={style.myinput} placeholder='Going to'/>
+    <Input className={style.myinput} placeholder='Leaving from '/>
+    <Input
+    className={style.mydate} 
+ placeholder="Check in"
+ size="md"
+ type="datetime-local"
+/><Input
+className={style.mydate} 
+ placeholder="Check out"
+ size="md"
+ type="datetime-local"
+/>
+    
+</TabPanel>
+
+<br />
+<div className={style.flightdiv}>
+
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
+<div><Input type={"checkbox"}/>Add car</div>
 
 
     {check? <div>
@@ -322,8 +323,8 @@ className={style.mydate}
 
 <br />
 <div className={style.flightdiv}>
-<Input type={"checkbox"} onClick={checked}/>Add Flight
-<Input type={"checkbox"}/>Add car
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
+<div><Input type={"checkbox"}/>Add car</div>
 
 
     {check? <div>

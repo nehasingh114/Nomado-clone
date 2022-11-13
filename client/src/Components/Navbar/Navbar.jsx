@@ -12,9 +12,7 @@ import { SlPlane } from "react-icons/sl";
 import { BsBagCheckFill, BsFillBagFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg"
 import { IoIosFolder } from "react-icons/io";
-
-
-
+import {Logo} from "../Logo.jsx"
 import {
   ChevronDownIcon,
 } from "@chakra-ui/icons"
@@ -37,8 +35,8 @@ const BigScreen = () => {
     <HStack className={style.main}>
       <HStack gap={"25px"}>
         {/* logo */}
-        <Image src={"https://www.orbitz.com/_dms/header/logo.svg?locale=en_US&siteid=70201&2"} alt="" />
-
+    <Link to="/"> <Logo iconColor={"white"} w="250px" h="40px" textColor={"white"}   /></Link>      
+       
         {/* menu */}
         <Menu>
           <MenuButton className={style.selection} as={Button} rightIcon={<ChevronDownIcon />}>
@@ -103,11 +101,10 @@ const BigScreen = () => {
 
       </HStack >
       <HStack gap={"25px"} alignItems="center" textAlign={"center"} className={style.rightnavDiv}>
-        <Text className={style.rightnav}>Espanol</Text>
         <Text className={style.rightnav}>List your property</Text>
         <Text className={style.rightnav}>Support</Text>
-        <Text className={style.rightnav}>Trips</Text>
-        <Text className={style.rightnav}>Sign in</Text>
+        <Link to=''>    <Text className={style.rightnav}>Trips</Text></Link>
+      <Link to='/signin'>  <Text className={style.rightnav}>Sign in</Text></Link>
       </HStack>
 
     </HStack>
@@ -120,7 +117,7 @@ const SmallScreen = () => {
     <HStack className={style.main}>
       <HStack gap={"25px"}>
         {/* logo */}
-        <Image src={"https://www.orbitz.com/_dms/header/logo.svg?locale=en_US&siteid=70201&2"} alt="" />
+        <Link to="/">  <Logo iconColor={"white"} w="150px" h="40px" textColor={"white"}   /></Link>
 
         {/* menu */}
         <Menu>
@@ -168,8 +165,8 @@ const SmallScreen = () => {
       <HStack>
 
       </HStack>
-      <BsFillBagFill className={style.bag} />
-      <CgProfile className={style.profile} />
+            <BsFillBagFill className={style.bag} />
+      <Link to='/signin'>      <CgProfile className={style.profile} /></Link>
     </HStack>
 
   </div>

@@ -1,7 +1,8 @@
 body{
-    margin: 0px;
+    /* margin: 0px; */
     /* background-color: #00253C; */
     height: 75px;
+    overflow-x: hidden;
 
  }
  .link{
@@ -12,7 +13,7 @@ body{
      width: 100%;
      background-color: #00253C;
      height: 75px;
-     margin: 10px;
+     /* margin: 10px; */
      /* margin-left: 155px; */
      justify-content: space-around;
      text-align: center;
