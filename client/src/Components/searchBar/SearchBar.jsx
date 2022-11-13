@@ -69,10 +69,10 @@ const SearchBar = () => {
         setData([])
     }
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        navigate("/hotels", { state: text });
-    }
+const onSubmit=async(e)=>{
+    e.preventDefault();
+    navigate("/hotels",{state:text});
+}
 
 
     return (
