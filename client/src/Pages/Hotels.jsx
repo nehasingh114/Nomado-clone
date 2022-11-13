@@ -1,20 +1,19 @@
 import { Box, Button, Checkbox, filter, Flex, Image, Spacer, Stack, Text } from "@chakra-ui/react"
 import { Ads } from "../Components/Ads"
 import { Sidebar } from "../Components/Sidebar"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useState } from "react"
-import { getHotels } from "../redux/hotels/hotels.actions"
-import { ImLocation } from "react-icons/im"
-import { Link } from "react-router-dom"
-import ScaleLoader from "react-spinners/ScaleLoader";
-import Navbar from "../Components/Navbar/Navbar"
-import { Footer } from "../Components/Footer/Footer"
 
-export const Hotels = (text) => {
-    // console.log(text);
-    const { loading, data } = useSelector((store) => store.hotels)
-    const [filterData, setfilterData] = useState(data)
-    const dispatch = useDispatch()
+import {useDispatch,useSelector} from "react-redux"
+import { useEffect } from "react"
+import { getHotels } from "../store/hotels/hotels.actions"
+import {ImLocation} from "react-icons/im"
+import { useLocation } from "react-router-dom"
+
+export const Hotels = () => {
+    const {state}=useLocation()
+
+console.log(state);
+    const {loading,data}=useSelector((store)=>store.hotels)
+    const dispatch=useDispatch()
 
     const handleFilter = (arr) => {
 
