@@ -284,13 +284,16 @@ className={style.mydate}
 </TabPanel>
 
 
+<br />
+<div className={style.flightdiv}>
 
-<Input type={"checkbox"} onClick={checked}/>Add Flight
-<Input type={"checkbox"}/>Add car
+<div> <Input type={"checkbox"} onClick={checked}/>Add Flight</div>
+<div><Input type={"checkbox"}/>Add car</div>
 
 
     {check? <Input className={style.myinput} placeholder='Leaving from '/>:""}
 <Button className={style.Button}>Search</Button>
+</div>
     </TabPanel>
 </TabPanels>
 </Tabs>

@@ -74,8 +74,12 @@ className={style.mydate}
 
 
 
-<Input type={"checkbox"} onClick={checked}/>Add Flight
-<Input type={"checkbox"}/>Add car
+<br />
+<div className={style.flightdiv}>
+
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
+
+<div><Input type={"checkbox"}/>Add car</div>
 
 
     {check? <div>
@@ -93,6 +97,7 @@ className={style.mydate}
 />
     </div>:""}
 <Button className={style.Button}>Search</Button>
+</div>
     </TabPanel>
     <TabPanel>
     <TabPanel className={style.TabPanel}>
@@ -105,7 +110,10 @@ className={style.mydate}
  type="datetime-local"
 />
 </TabPanel>
-<Input type={"checkbox"} onClick={checked}/>Add Flight
+
+<br />
+<div className={style.flightdiv}>
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
     {check? <div>
      check in   <Input
     className={style.mydate} 
@@ -121,6 +129,9 @@ className={style.mydate}
 />
     </div>:""}
 <Button className={style.Button}>Search</Button>
+</div>
+
+
     </TabPanel>
     <TabPanel>
     <TabPanel className={style.TabPanel}>
@@ -133,7 +144,10 @@ className={style.mydate}
  type="datetime-local"
 />
 </TabPanel>
-<Input type={"checkbox"} onClick={checked}/>Add Flight
+
+<br />
+<div className={style.flightdiv}>
+<div><Input type={"checkbox"} onClick={checked}/>Add Flight</div>
     {check? <div>
      check in   <Input
     className={style.mydate} 
@@ -149,6 +163,8 @@ className={style.mydate}
 />
     </div>:""}
 <Button className={style.Button}>Search</Button>
+</div>
+
     </TabPanel>
   </TabPanels>
 </Tabs>
