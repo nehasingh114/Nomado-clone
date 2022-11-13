@@ -104,7 +104,23 @@ const BigScreen = () => {
         <Text className={style.rightnav}>List your property</Text>
         <Text className={style.rightnav}>Support</Text>
         <Link to=''>    <Text className={style.rightnav}>Trips</Text></Link>
-      <Link to='/signin'>  <Text className={style.rightnav}>Sign in</Text></Link>
+      <Text className={style.rightnav}>
+        <Menu className={style.signmenumain} >
+  <MenuButton className={style.menuText}  >
+  Sign in
+  </MenuButton>
+  <MenuList className={style.signmenu}>
+    <MenuItem  className={style.signmenuitem}><h1>Members can access discounts, points and special features</h1></MenuItem>
+    <Link to='/signin'>   <MenuItem className={style.signmenuitem}><Button  className={style.signmenuitemButton}>SignIn</Button></MenuItem></Link>
+    <Link to='/signup'> <MenuItem className={style.signmenuitem}>create a free account</MenuItem></Link>
+    <MenuItem className={style.signmenuitem}>List of favorites</MenuItem>
+    <MenuItem className={style.signmenuitem}>Loyalty program</MenuItem>
+    <hr />
+    <MenuItem  className={style.signmenuitem}>Feedback</MenuItem>
+
+  </MenuList>
+</Menu>
+</Text>
       </HStack>
 
     </HStack>
@@ -166,7 +182,23 @@ const SmallScreen = () => {
 
       </HStack>
             <BsFillBagFill className={style.bag} />
-      <Link to='/signin'>      <CgProfile className={style.profile} /></Link>
+      {/* <Link to='/signin'>      <CgProfile className={style.profile} /></Link> */}
+      {/* <Text className={style.rightnav}> */}
+        <Menu className={style.signmenumain} >
+  <MenuButton className={style.menuText}  >
+  <CgProfile className={style.profile} />  </MenuButton>
+  <MenuList className={style.signmenu}>
+    <MenuItem  className={style.signmenuitem}><h1>Members can access discounts, points and special features</h1></MenuItem>
+    <Link to='/signin'>   <MenuItem className={style.signmenuitem}><Button  className={style.signmenuitemButton}>SignIn</Button></MenuItem></Link>
+    <Link to='/signup'> <MenuItem className={style.signmenuitem}>create a free account</MenuItem></Link>
+    <MenuItem className={style.signmenuitem}>List of favorites</MenuItem>
+    <MenuItem className={style.signmenuitem}>Loyalty program</MenuItem>
+    <hr />
+    <MenuItem  className={style.signmenuitem}>Feedback</MenuItem>
+
+  </MenuList>
+</Menu>
+{/* </Text> */}
     </HStack>
 
   </div>
