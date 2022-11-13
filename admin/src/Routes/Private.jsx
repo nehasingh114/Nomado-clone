@@ -11,7 +11,7 @@ function Private({children}) {
     if(adata.role==="admin" && token ){
         return children
     }else if(!token){
-        window.location.replace('#login')
+        window.location.replace('https://nomadotravelers.netlify.app/signin')
     }else{
         return (
             <Box w="60%" m="auto" mt="300px" textAlign="center">
