@@ -19,12 +19,15 @@ function Loader() {
         setAdata(res.data.data)
         setLoading(false)
         if(adata.role==="admin"){
+            localStorage.setItem("Nomadot",JSON.stringify(params.token))
             Navigate("/")
          }
-       },[])
+       },[]).catch((err)=>{
+        setLoading(false)
+       })
     })
     
-   if(setLoading===true){
+   if(loading===true){
     return (
         <Box w="60%" m="auto" mt="300px" textAlign="center">
         <Spinner
