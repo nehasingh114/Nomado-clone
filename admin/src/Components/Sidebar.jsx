@@ -6,7 +6,7 @@ function Sidebar(props) {
  const Navigate=useNavigate()
     const handleLogout=()=>{
         localStorage.removeItem("Nomadot");
-        Navigate("https://www.forbes.com/wheels/news/best-selling-cars-suvs-pickups-2020/")
+        window.location.replace('https://nomadotravelers.netlify.app/signin')
     }
 
 

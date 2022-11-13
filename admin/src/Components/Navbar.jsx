@@ -13,11 +13,10 @@ function Navbar(props) {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
-
-
-
-
-
+    const handleLogout=()=>{
+      localStorage.removeItem("Nomadot");
+      window.location.replace('https://nomadotravelers.netlify.app/signin')
+  }
     return (
         <Box w="100%" position="fixed" left="0" top="0" display={{base:"flex",md:"flex",lg:"none"}} alignItems="center" textAlign="center">
           
@@ -70,12 +69,12 @@ function Navbar(props) {
 
       
 
-        <Link to="/logout" onClick={onClose}>
-        <Box pl="40px"  pb="20px"   display="flex" alignItems="center" gap="10px">
+        
+        <Box pl="40px"  pb="20px" onClick={handleLogout}  display="flex" alignItems="center" gap="10px">
         <i className="fa-solid fa-right-from-bracket"></i>
         <Heading size="md" fontWeight="400">Logout</Heading>
         </Box>
-        </Link>
+        
           </DrawerBody>
         </DrawerContent>
       </Drawer>
