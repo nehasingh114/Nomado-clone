@@ -89,9 +89,10 @@ useEffect(()=>{
  }
  else{
   return (
-    <Box w={{base:"100%",md:"100%",lg:"82%"}} ml={{base:"0%",md:"0%",lg:"19%"}} mt={{base:"75px",md:"75px",lg:"55px"}} px="10px">
-        <Box>
+    <Box w={{base:"100%",md:"100%",lg:"82%"}} ml={{base:"0%",md:"0%",lg:"19%"}} mt={{base:"75px",md:"75px",lg:"55px"}} px="12px">
+        <Box display={{base:"block",md:"block",lg:"flex"}} justifyContent="space-between" alignItems="center">
             <Heading color="black" fontWeight="500">Dashboard</Heading>
+            <Heading  color="black" size="lg" fontWeight="400">Hi, {adata.lastName} {adata.firstName} </Heading>
         </Box>
         <Grid w="100%" mt="30px" mb="20px"  templateColumns={{base:'100%',md:'repeat(2, 1fr)',lg:'repeat(4, 1fr)'}} gap="4">
             <Box backgroundColor="#0277bd" color="white" borderRadius="10px" fontWeight="400">
@@ -117,7 +118,7 @@ useEffect(()=>{
                     <i className="fa-solid fa-hotel"></i>
                     </Box>
                 </Box>
-                <Box borderBottomRadius="10px" textAlign="center" backgroundColor="#1b5e20"> More Info <i className="fa-solid fa-circle-arrow-right"></i></Box>
+                <Link to="/stays"><Box borderBottomRadius="10px" textAlign="center" backgroundColor="#1b5e20"> More Info <i className="fa-solid fa-circle-arrow-right"></i></Box></Link>
             </Box>
             
 
@@ -131,7 +132,7 @@ useEffect(()=>{
                     <i className="fa-solid fa-taxi"></i>
                     </Box>
                 </Box>
-                <Box borderBottomRadius="10px" textAlign="center" backgroundColor="#f57f17"> More Info <i className="fa-solid fa-circle-arrow-right"></i></Box>
+                <Link to="/cars"><Box borderBottomRadius="10px" textAlign="center" backgroundColor="#f57f17"> More Info <i className="fa-solid fa-circle-arrow-right"></i></Box></Link>
             </Box>
 
             <Box backgroundColor="#d32f2f" color="white" borderRadius="10px" >
@@ -144,7 +145,7 @@ useEffect(()=>{
                     <i className="fa-solid fa-plane-departure"></i>
                     </Box>
                 </Box>
-                <Box borderBottomRadius="10px" textAlign="center" backgroundColor="#b71c1c"> More Info <i className="fa-solid fa-circle-arrow-right"></i></Box>
+                <Link to="/flights"><Box borderBottomRadius="10px" textAlign="center" backgroundColor="#b71c1c"> More Info <i className="fa-solid fa-circle-arrow-right"></i></Box></Link>
             </Box>
 
 

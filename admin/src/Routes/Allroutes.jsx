@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom"
 import Cars from './Cars';
 import Dashboard from './Dashboard';
 import Flights from './Flights';
+import HotelDetail from './HotelDetail';
 import Loader from './Loader';
 import Private from './Private';
 import Stays from './Stays';
@@ -18,6 +19,7 @@ function Allroutes(props) {
             <Route path="/cars" element={<Private><Cars/></Private>}/>
             <Route path="/flights" element={<Private><Flights/></Private>}/>
             <Route path="/stays" element={<Private><Stays/></Private>}/>
+            <Route path="/hotel" element={<Private><HotelDetail/></Private>}/>
          </Routes>
     );
 }

@@ -68,12 +68,7 @@ function Navbar(props) {
         </Box>
         </Link>
 
-        <Link to="/profile" onClick={onClose}>
-        <Box pl="40px"  pb="20px"   display="flex" alignItems="center" gap="10px">
-        <i className="fa-solid fa-user"></i>
-        <Heading size="md" fontWeight="400">My Profile</Heading>
-        </Box>
-        </Link>
+      
 
         <Link to="/logout" onClick={onClose}>
         <Box pl="40px"  pb="20px"   display="flex" alignItems="center" gap="10px">

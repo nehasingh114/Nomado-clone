@@ -7,9 +7,10 @@ function Users() {
     const {token}=useContext(AdminData)
     const [data,setData]=useState([])
     const [loading,setLoading]=useState(true)
-
+    const [error,setError]=useState(false)
 
     const getData=()=>{
+        setLoading(true)
         axios.get("https://venomous-plough-7848.vercel.app/api/admin/users",{
             headers:{
                 token:token
@@ -17,6 +18,10 @@ function Users() {
         }).then((res)=>{
             setData(res.data.data)
             setLoading(false)
+            setError(false)
+        }).catch((err)=>{
+            setLoading(false)
+            setError(true)
         })
     }
     useEffect(()=>{
@@ -33,20 +38,27 @@ function Users() {
     })
  }
 
-       if(loading){
-        return (<Box w="60%" m="auto" mt="300px" textAlign="center">
-        <Spinner
-            thickness='4px'
-            speed='0.65s'
-            emptyColor='gray.200'
-            color='blue.500'
-            size='xl'
-            />
-        </Box>)
-       }else{
+ if(loading===true){
+    return ( <Box w="60%" m="auto" mt="300px" textAlign="center">
+     <Spinner
+         thickness='4px'
+         speed='0.65s'
+         emptyColor='gray.200'
+         color='blue.500'
+         size='xl'
+         />
+     </Box>)
+    }else if(error===true){
+     return (
+       <Box w="60%" m="auto" mt="300px" textAlign="center">
+               <Heading>401 Server Error</Heading>
+           </Box>
+     )
+    }      
+ else{
         return (
 
-            <Box w="82%" ml="20%" mt="55px" pr="10px">
+            <Box w={{base:"100%",md:"100%",lg:"82%"}} ml={{base:"0%",md:"0%",lg:"19%"}} mt={{base:"75px",md:"75px",lg:"55px"}} px="10px">
                <Heading fontWeight="500">Active Users</Heading>
     
                <Box>
