@@ -1,4 +1,4 @@
-import { AUTH_ERROR, AUTH_LOADING, AUTH_SIGNIN_SUCCESS, AUTH_SIGNUP_SUCCESS } from "./auth.types";
+import { AUTH_ERROR, AUTH_LOADING, AUTH_LOGOUT, AUTH_SIGNIN_SUCCESS, AUTH_SIGNUP_SUCCESS } from "./auth.types";
 import axios from 'axios';
 
 const host = 'https://venomous-plough-7848.vercel.app/api';
@@ -27,4 +27,8 @@ export const signupAPI = (data) => async (dispatch) => {
         dispatch({ type: AUTH_ERROR })
         return e.response.data;
     }
+}
+
+export const logoutAPI = () => {
+    return {type:AUTH_LOGOUT}
 }

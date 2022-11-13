@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Box , Text, Button, Center} from '@chakra-ui/react'
-const Flow = () => {
+export const Flow = () => {
   return (
     <Box  w='30%' color='white'   box-shadow= '10px 10px 5px #aaaaaa'
    p={20}
@@ -30,4 +30,3 @@ const Flow = () => {
   )
 }
 
-export default Flow

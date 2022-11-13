@@ -11,11 +11,13 @@ import Navbar from "../Components/Navbar/Navbar"
 import { Footer } from "../Components/Footer/Footer"
 
 export const Hotels = () => {
+
     
     const { loading, data } = useSelector((store) => store.hotels)
     const [filterData, setfilterData] = useState(data)
     const {state}=useLocation()
     console.log(state)
+
     const dispatch = useDispatch()
 
     const handleFilter = (arr) => {
@@ -31,17 +33,17 @@ export const Hotels = () => {
     }
    
     useEffect(() => {
-        let arr=[]
-        dispatch(getHotels()).then((res) => 
-        //setfilterData(res)
-        res.filter((item)=>{
-            if(item["uitk-image-media src"]!=="" || item["uitk-image-media src 2"]!=="" || item["uitk-image-media src 3"]!=="" || item["uitk-image-media src 4"]!==""){
-                arr.push(item)
-            } 
-            console.log(arr)
-            setfilterData(arr)
-        })
-        
+        let arr = []
+        dispatch(getHotels()).then((res) =>
+            //setfilterData(res)
+            res.filter((item) => {
+                if (item["uitk-image-media src"] !== "" || item["uitk-image-media src 2"] !== "" || item["uitk-image-media src 3"] !== "" || item["uitk-image-media src 4"] !== "") {
+                    arr.push(item)
+                }
+                console.log(arr)
+                setfilterData(arr)
+            })
+
         )
 
     }, [dispatch])
@@ -51,7 +53,7 @@ export const Hotels = () => {
         <>
 
             <Box w='100%' bg="rgb(245,245,245)">
-               <Navbar/>
+                <Navbar />
                 <Flex gap='20px' bg="rgb(245,245,245)">
                     <Box>
                         <Sidebar handleFilter={handleFilter} />
@@ -66,7 +68,7 @@ export const Hotels = () => {
                                     <Flex key={hotel._id} marginTop='20px'>
                                         <Box w='40%' >
                                             <Link to={`/hotels/${hotel._id}`}>
-                                                <Image objectFit='cover' src={hotel["uitk-image-media src 2"] || hotel["uitk-image-media src"] || hotel["uitk-image-media src 3"] || hotel["uitk-image-media src 4"]} alt="1" />
+                                                <Image objectFit='cover' src={hotel["uitk-image-media src 2"] || hotel["uitk-image-media src"] || hotel["uitk-image-media src 3"] || hotel["uitk-image-media src 4"]} alt="1" h='200px' w='300px' />
                                             </Link>
 
 
@@ -77,7 +79,9 @@ export const Hotels = () => {
                                                 <Text textAlign="left" fontSize="20px" fontWeight="bold">{hotel["uitk-heading"]}</Text>
                                                 <Flex>
                                                     <Box paddingTop='5px'><ImLocation /></Box>
-                                                    <Box marginLeft='10px' ><Text textAlign="left" >{state}</Text></Box>
+
+                                                    <Box marginLeft='10px' ><Text textAlign="left" >{state||hotel["uitk-text"]}</Text></Box>
+
                                                 </Flex>
 
 
@@ -110,7 +114,7 @@ export const Hotels = () => {
                     </Box>
 
                 </Flex>
-             <Footer/>
+                <Footer />
             </Box>
         </>
     )
