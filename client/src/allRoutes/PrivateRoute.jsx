@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const PrivateRoute = ({ children }) => {
     const { isAuth } = useSelector(store => store.auth);
-    const navigate = useNavigate()
-    if (!isAuth) {
-        return navigate('/signin')
+
+    if (isAuth) {
+        return <Navigate to='/signin' replace={true}/>
     }
     return children
 }

@@ -10,29 +10,34 @@ import { Trip } from "../Pages/Trips";
 import { PrivateRoute } from "./PrivateRoute";
 import Flight from "../Pages/Flight/Flight"
 import Homepage from "../Pages/Homepage/Homepage"
-import Stays from "../Pages/stays/Stays"
+import Stays from "../Pages/stays/Stays";
+import { ChakraProvider } from '@chakra-ui/react';
 
 export const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
-      <Route path="/hotels" element={<Hotels />} />
+      <Route path="/hotels" element={<ChakraProvider><Hotels /></ChakraProvider>} />
       <Route path="/stays" element={<Stays />} />
       <Route path="/flight" element={<Flight />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/hotels/:id" element={<BookHotel />} />
-      <Route path="/flights" element={<Flights />} />
+      <Route path="/signin" element={<ChakraProvider><SignIn /></ChakraProvider>} />
+      <Route path="/signup" element={<ChakraProvider><Signup /></ChakraProvider>} />
+      <Route path="/hotels/:id" element={<ChakraProvider><BookHotel /></ChakraProvider>} />
+      <Route path="/flights" element={<ChakraProvider><Flights /></ChakraProvider>} />
       <Route
         path="/checkout/bookhotel"
         element={
           <PrivateRoute>
-            <HotelCheckout />
+            <ChakraProvider>
+              <HotelCheckout />
+            </ChakraProvider>
           </PrivateRoute>
         }
       />
-      <Route path="/confirmpayment/stays" element={<ConfirmPayment />} />
-      <Route path="/trips" element={<Trip />} />
+      <Route path="/confirmpayment/stays" element={<ChakraProvider><ConfirmPayment /></ChakraProvider>} />
+      <Route path="/trips" element={
+        <ChakraProvider>
+          <Trip /></ChakraProvider>} />
     </Routes>
   );
 };
