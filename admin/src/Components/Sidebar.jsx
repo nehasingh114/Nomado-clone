@@ -1,8 +1,16 @@
 import { Box, Heading } from '@chakra-ui/react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Sidebar(props) {
+ const Navigate=useNavigate()
+    const handleLogout=()=>{
+        localStorage.removeItem("Nomadot");
+        Navigate("https://www.forbes.com/wheels/news/best-selling-cars-suvs-pickups-2020/")
+    }
+
+
+
     return (
         <Box display={{base:"none",md:"none",lg:"block"}} w="18%" position="fixed" left="0" top="0"  backgroundColor={"#0E1525"} color="white" h="100vh">
         <Heading size="lg" pt="20px" pl="10px" pb="70px" fontWeight="400">Nomado, Admin</Heading>
@@ -39,19 +47,14 @@ function Sidebar(props) {
         </Box>
         </Link>
 
-        <Link to="/profile">
-        <Box pl="40px"  pb="15px"   display="flex" alignItems="center" gap="10px">
-        <i className="fa-solid fa-user"></i>
-        <Heading size="md" fontWeight="400">My Profile</Heading>
-        </Box>
-        </Link>
+       
 
-        <Link to="/logout">
-        <Box pl="40px"  pb="15px"   display="flex" alignItems="center" gap="10px">
+        
+        <Box pl="40px"  pb="15px" onClick={handleLogout}  display="flex" alignItems="center" gap="10px">
         <i className="fa-solid fa-right-from-bracket"></i>
         <Heading size="md" fontWeight="400">Logout</Heading>
         </Box>
-        </Link>
+        
         
        
     </Box>
