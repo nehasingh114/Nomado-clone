@@ -71,6 +71,7 @@ const SearchBar = () => {
 
 const onSubmit=async(e)=>{
     e.preventDefault();
+
     navigate("/hotels",{state:text});
 }
 
