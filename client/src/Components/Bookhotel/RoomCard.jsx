@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Image, Heading, Icon, RadioGroup, Radio, Button, Portal } from '@chakra-ui/react'
+import { Box, Flex, Text, Image, Heading, Icon, RadioGroup, Radio, Button, Portal, useDisclosure } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IoPersonSharp, IoBedSharp } from 'react-icons/io5';
@@ -10,6 +10,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { setRoomType } from '../../redux/singleHotel/singleHotel.action';
 import { useNavigate } from 'react-router-dom';
+import { ReserveModal } from './ReserveModal';
 
 export const RoomCard = ({ data, i }) => {
     const [value, setValue] = useState('0')
@@ -17,6 +18,8 @@ export const RoomCard = ({ data, i }) => {
     const containerRef = useRef(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { isAuth } = useSelector(store => store.auth);
+    const modal = useDisclosure();
     const { data: hotelData, pictures, rooms } = useSelector(store => store.singleHotel);
     const arrowStyles = {
         cursor: "pointer",
@@ -53,12 +56,17 @@ export const RoomCard = ({ data, i }) => {
     };
 
     const setRoom = (room) => {
-        dispatch(setRoomType(room, price, value))
-        navigate('/checkout/bookhotel')
+        if(isAuth) {
+            modal.onOpen();
+        }
+        else {
+            dispatch(setRoomType(room, price, value))
+            navigate('/checkout/bookhotel')
+        }
     }
     useEffect(() => {
-        hotelData['uitk-text 8']?setPrice(((Number(hotelData['uitk-text 8'].substring(1)) + Number(value)) * rooms.length)):null
-    }, [value,hotelData])
+        hotelData['uitk-text 8'] ? setPrice(((Number(hotelData['uitk-text 8'].substring(1)) + Number(value)) * rooms.length)) : null
+    }, [value, hotelData])
     return (
         <Box border='1px solid rgba(0,0,0,0.4)' bg='white' h='100%'>
             <Flex
@@ -172,6 +180,8 @@ export const RoomCard = ({ data, i }) => {
                     </Flex>
                 </Portal>
             </Box>
+
+            <ReserveModal modal={modal} />
         </Box>
     )
 }

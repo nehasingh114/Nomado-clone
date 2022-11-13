@@ -7,6 +7,8 @@ import { getHotels } from "../redux/hotels/hotels.actions"
 import { ImLocation } from "react-icons/im"
 import { Link } from "react-router-dom"
 import ScaleLoader from "react-spinners/ScaleLoader";
+import Navbar from "../Components/Navbar/Navbar"
+import { Footer } from "../Components/Footer/Footer"
 
 export const Hotels = (text) => {
     // console.log(text);
@@ -18,18 +20,37 @@ export const Hotels = (text) => {
 
         setfilterData(arr)
     }
-
+    // let arr=[]
+    // if (e.target.value === "Good") {
+    //     data.filter((data) => {
+    //         if (data["uitk-text 5"] === "Good") {
+    //             // filteredData.push(data)
+    //             arr.push(data)
+    //         }
+    //     });
+    // }
     useEffect(() => {
-        dispatch(getHotels()).then((res) => setfilterData(res))
+        let arr=[]
+        dispatch(getHotels()).then((res) => 
+        //setfilterData(res)
+        res.filter((item)=>{
+            if(item["uitk-image-media src"]!=="" || item["uitk-image-media src 2"]!=="" || item["uitk-image-media src 3"]!=="" || item["uitk-image-media src 4"]!==""){
+                arr.push(item)
+            } 
+            console.log(arr)
+            setfilterData(arr)
+        })
+        
+        )
 
     }, [dispatch])
     //console.log(data);
-    console.log(filterData)
+    //console.log(filterData)
     return (
         <>
 
             <Box w='100%' bg="rgb(245,245,245)">
-
+               <Navbar/>
                 <Flex gap='20px' bg="rgb(245,245,245)">
                     <Box>
                         <Sidebar handleFilter={handleFilter} />
@@ -88,7 +109,7 @@ export const Hotels = (text) => {
                     </Box>
 
                 </Flex>
-
+             <Footer/>
             </Box>
         </>
     )
