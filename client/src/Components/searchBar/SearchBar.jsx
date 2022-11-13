@@ -28,25 +28,25 @@ const SearchBar = () => {
     // seach section 
 
     let id;
-    const myInput = () => {
-        debounce(main, 500)
+    const myInput = (q) => {
+        debounce(main, 500,q)
     }
 
-    function debounce(func, delay) {
+    function debounce(func, delay,q) {
         if (id) clearTimeout(id);
         id = setTimeout(function () {
-            func();
+            func(q);
         }, delay);
     }
 
-    async function main() {
-        searchCity();
+    async function main(q) {
+        searchCity(q);
     }
-    async function searchCity() {
+    async function searchCity(q) {
         try {
 
-            if (text.length >= 1) {
-                const url = `https://venomous-plough-7848.vercel.app/api/search/stays?q=${text}`;
+            if (q.length >= 1) {
+                const url = `https://venomous-plough-7848.vercel.app/api/search/stays?q=${q}`;
                 let res = await fetch(url);
                 res = await res.json();
                 console.log(res);
@@ -69,10 +69,10 @@ const SearchBar = () => {
         setData([])
     }
 
-const onSubmit=async(e)=>{
-    e.preventDefault();
-    navigate("/hotels",{state:text});
-}
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        navigate("/hotels", { state: text });
+    }
 
 
     return (
@@ -94,7 +94,10 @@ const onSubmit=async(e)=>{
                         <TabPanel>
                             <TabPanel className={style.TabPanel}>
                                 <div style={{ display: "block" }}>
-                                    <Input className={style.myinput} id="query" onChange={(e) => { setText(e.target.value) }} onInput={myInput} placeholder='Going to' />
+                                    <Input className={style.myinput} value={text} id="query" onChange={(e) => {
+                                        setText(e.target.value);
+                                        myInput(e.target.value);
+                                    }} placeholder='Going to' />
                                     <Box className={style.suggestions} borderRadius='10px'
                                         boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px' >
                                         {data?.map((el) => (
