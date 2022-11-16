@@ -25,7 +25,7 @@ const SearchBar = () => {
     }
 
 
-    // seach section 
+    // search section 
 
     let id;
     const myInput = (q) => {
