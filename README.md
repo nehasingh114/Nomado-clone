@@ -58,6 +58,21 @@
 - Loader
 - All  page are working
 
+## UI :- 
+
+
+![2022-11-16](https://user-images.githubu![2022-11-16 (10)](https://user-images.githubusercontent.com/101567990/202131209-7dd50c62-17d6-49a1-90b9-c285d2b77529.png)
+sercontent.com/101567990/202131115-938b0ca2-ac97-4365-a5c6-ba085b0908f9.png)
+![2022-11-16 (1)](https://user-images.githubusercontent.com/101567990/202131173-d6ec6b8b-7663-4b9e-b2ef-3869f991bd13.png)
+![2022-11-16 (2)](https://user-images.githubusercontent.com/101567990/202131269-e4d1f24d-7ccd-4a2e-ad4a-4ff916ed5621.png)
+![2022-11-16 (9)](https://user-images.githubusercontent.com/101567990/202131325-3dc3a0ef-dfcd-4cb9-980e-371e35a8a0a2.png)
+
+![2022-11-16 (4)](https://user-images.githubusercontent.com/101567990/202131288-c8846df7-cf25-400a-9b31-c76916093b43.png)
+![2022-11-16 (6)](https://user-images.githubusercontent.com/101567990/202131372-46b8a750-3310-40c6-aff1-ffc924cd8adb.png)
+![2022-11-16 (16)](https://user-images.githubusercontent.com/101567990/202131444-11cb19e2-4997-4f6b-b30b-f459415ccc24.png)![2022-11-16 (13)](https://user-images.githubusercontent.com/101567990/202131476-07564544-2e85-49d2-8e25-22260b172a28.png)
+
+
+
 ## Some Chanllenges We Faced :
 
 -We have faced few challenges while working on project , sometimes it take lot of time to finish the tasks , but on the other hand we learned many things from that. some of the challenges are-
