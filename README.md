@@ -59,10 +59,11 @@
 - All  page are working
 
 ## UI :- 
+![2022-11-16](https://user-images.githubusercontent.com/101567990/202131706-1834bd36-f2fe-4deb-93f5-b20042d5cf16.png)
 
 
-![2022-11-16](https://user-images.githubu![2022-11-16 (10)](https://user-images.githubusercontent.com/101567990/202131209-7dd50c62-17d6-49a1-90b9-c285d2b77529.png)
-sercontent.com/101567990/202131115-938b0ca2-ac97-4365-a5c6-ba085b0908f9.png)
+<!-- ![2022-11-16](https://user-images.githubu![2022-11-16 (10)](https://user-images.githubusercontent.com/101567990/202131209-7dd50c62-17d6-49a1-90b9-c285d2b77529.png)
+sercontent.com/101567990/202131115-938b0ca2-ac97-4365-a5c6-ba085b0908f9.png) -->
 ![2022-11-16 (1)](https://user-images.githubusercontent.com/101567990/202131173-d6ec6b8b-7663-4b9e-b2ef-3869f991bd13.png)
 ![2022-11-16 (2)](https://user-images.githubusercontent.com/101567990/202131269-e4d1f24d-7ccd-4a2e-ad4a-4ff916ed5621.png)
 ![2022-11-16 (9)](https://user-images.githubusercontent.com/101567990/202131325-3dc3a0ef-dfcd-4cb9-980e-371e35a8a0a2.png)
